@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="24 58 712 326" font-family="'Segoe UI', Tahoma, Verdana, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#101f2e"/>
+    </marker>
+    <marker id="arrowStart" markerWidth="9" markerHeight="9" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M7,0 L0,3 L7,6 Z" fill="#101f2e"/>
+    </marker>
+  </defs>
+
+  <!-- Orchestrator (hero) -->
+  <rect x="40" y="80" width="250" height="180" rx="14" fill="#101f2e" stroke="#fcb770" stroke-width="2"/>
+  <text x="165" y="116" text-anchor="middle" fill="#fcb770" font-size="17" font-weight="bold">Orchestrator card</text>
+  <text x="68" y="150" fill="#e6ebf1" font-size="14">· generates the seed</text>
+  <text x="68" y="174" fill="#e6ebf1" font-size="14">· splits it via Shamir</text>
+  <text x="68" y="198" fill="#e6ebf1" font-size="14">· reconstructs the seed</text>
+  <text x="68" y="230" fill="#8a97a6" font-size="12" font-style="italic">holds no share at rest</text>
+
+  <!-- Storage cards -->
+  <g>
+    <rect x="500" y="74" width="220" height="56" rx="10" fill="#ffffff" stroke="#101f2e" stroke-width="1.5"/>
+    <text x="610" y="98" text-anchor="middle" fill="#2c3e50" font-size="15" font-weight="bold">Storage card #1</text>
+    <text x="610" y="117" text-anchor="middle" fill="#7c8896" font-size="11">holds 1 encrypted share · PIN</text>
+
+    <rect x="500" y="142" width="220" height="56" rx="10" fill="#ffffff" stroke="#101f2e" stroke-width="1.5"/>
+    <text x="610" y="166" text-anchor="middle" fill="#2c3e50" font-size="15" font-weight="bold">Storage card #2</text>
+    <text x="610" y="185" text-anchor="middle" fill="#7c8896" font-size="11">holds 1 encrypted share · PIN</text>
+
+    <rect x="500" y="210" width="220" height="56" rx="10" fill="#ffffff" stroke="#101f2e" stroke-width="1.5"/>
+    <text x="610" y="234" text-anchor="middle" fill="#2c3e50" font-size="15" font-weight="bold">Storage card #N</text>
+    <text x="610" y="253" text-anchor="middle" fill="#7c8896" font-size="11">holds 1 encrypted share · PIN</text>
+
+    <text x="610" y="290" text-anchor="middle" fill="#8a97a6" font-size="12">up to 12 cards</text>
+  </g>
+
+  <!-- Encrypted channel (bidirectional) -->
+  <line x1="296" y1="150" x2="494" y2="150" stroke="#101f2e" stroke-width="2" marker-start="url(#arrowStart)" marker-end="url(#arrow)"/>
+  <text x="395" y="140" text-anchor="middle" fill="#2c3e50" font-size="13">encrypted channel</text>
+
+  <!-- HSM -->
+  <rect x="95" y="312" width="140" height="56" rx="10" fill="#eef1f4" stroke="#101f2e" stroke-width="1.5"/>
+  <text x="165" y="346" text-anchor="middle" fill="#2c3e50" font-size="16" font-weight="bold">HSM</text>
+
+  <!-- RSA-wrapped seed arrow -->
+  <line x1="165" y1="260" x2="165" y2="310" stroke="#101f2e" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="178" y="290" fill="#2c3e50" font-size="13">RSA-wrapped seed</text>
+</svg>

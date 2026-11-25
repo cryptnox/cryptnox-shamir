@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choosing Parameters &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/parameters.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Custody Governance &amp; Checklists" href="governance.html" />
+    <link rel="prev" title="Backup Test" href="backup_test.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/parameters.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/parameters.html" />
+<meta property="og:title" content="Choosing Parameters | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="Choosing Parameters | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceremony.html">The Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Choosing Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-quorum-k-of-n">The quorum: <code class="docutils literal notranslate"><span class="pre">k</span></code> of <code class="docutils literal notranslate"><span class="pre">n</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seed-size">Seed size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seed-type">Seed type</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printable_checklist.html">Printable Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="security_model.html">Security Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Choosing Parameters</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="choosing-parameters">
+<h1>Choosing Parameters<a class="headerlink" href="#choosing-parameters" title="Link to this heading"></a></h1>
+<p>Before a ceremony you choose three things: the <strong>quorum</strong> (<code class="docutils literal notranslate"><span class="pre">k</span></code> of <code class="docutils literal notranslate"><span class="pre">n</span></code>),
+the <strong>seed size</strong>, and the <strong>seed type</strong>. This page helps you pick values
+that match your custody policy.</p>
+<section id="the-quorum-k-of-n">
+<h2>The quorum: <code class="docutils literal notranslate"><span class="pre">k</span></code> of <code class="docutils literal notranslate"><span class="pre">n</span></code><a class="headerlink" href="#the-quorum-k-of-n" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>``n``</strong> is the total number of cards (and shares).</p></li>
+<li><p><strong>``k``</strong> is how many of them are required to reconstruct the secret.</p></li>
+</ul>
+<p>The intuition:</p>
+<ul class="simple">
+<li><p>A larger <strong>``n``</strong> gives more <strong>redundancy</strong> — you can afford to lose more
+cards (you can lose up to <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">k</span></code> and still recover).</p></li>
+<li><p>A larger <strong>``k``</strong> gives more <strong>security</strong> — an attacker must compromise
+more cards — at the cost of needing more people/locations to recover.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The two are independent. <code class="docutils literal notranslate"><span class="pre">3-of-5</span></code> survives the loss of 2 cards <strong>and</strong>
+requires 3 to recover; <code class="docutils literal notranslate"><span class="pre">2-of-5</span></code> survives 3 losses but only needs 2 to
+recover (weaker). Pick <code class="docutils literal notranslate"><span class="pre">k</span></code> from your security policy, then <code class="docutils literal notranslate"><span class="pre">n</span></code> from
+how much redundancy you want on top.</p>
+</div>
+<p>Typical configurations:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26.0%" />
+<col style="width: 8.0%" />
+<col style="width: 8.0%" />
+<col style="width: 58.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Use case</p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">n</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">k</span></code></p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Personal / small treasury</p></td>
+<td><p>3</p></td>
+<td><p>2</p></td>
+<td><p>Three sites, any two recover. Survives one loss.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Small team / four-eyes</p></td>
+<td><p>5</p></td>
+<td><p>3</p></td>
+<td><p>Majority required; survives two losses.</p></td>
+</tr>
+<tr class="row-even"><td><p>Enterprise</p></td>
+<td><p>7</p></td>
+<td><p>4</p></td>
+<td><p>Robust to multiple losses and absentees.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximum distribution</p></td>
+<td><p>12</p></td>
+<td><p>7</p></td>
+<td><p>The system’s hard limits.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Constraints:</strong> <code class="docutils literal notranslate"><span class="pre">n</span></code> ∈ [2, 12], <code class="docutils literal notranslate"><span class="pre">k</span></code> ∈ [2, 7], and <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">≤</span> <span class="pre">n</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">n</span></code> is also capped by the <strong>number of storage cards you hold</strong>: a set’s
+card count is the maximum <code class="docutils literal notranslate"><span class="pre">n</span></code>. You may use fewer (leaving spares unused),
+but never more. The k-of-n is your choice at the ceremony — it is not marked
+at the factory. See <a class="reference internal" href="ceremony.html#ceremony-labelling"><span class="std std-ref">Card order (share numbers)</span></a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">1</span></code> is <strong>not</strong> supported (and would be insecure — a single card
+would reveal the secret). The minimum threshold is <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p>
+</div>
+</section>
+<section id="seed-size">
+<h2>Seed size<a class="headerlink" href="#seed-size" title="Link to this heading"></a></h2>
+<p>The seed size is given in <strong>bytes</strong> with <code class="docutils literal notranslate"><span class="pre">-s</span></code>. Choose it to match the
+secret you are protecting.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12.0%" />
+<col style="width: 12.0%" />
+<col style="width: 76.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Size</p></th>
+<th class="head"><p>Bits</p></th>
+<th class="head"><p>Typical use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">16</span></code></p></td>
+<td><p>128</p></td>
+<td><p>A 128-bit AES key; BIP-39 minimum entropy.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">32</span></code></p></td>
+<td><p>256</p></td>
+<td><p><strong>Most common.</strong> secp256k1 / NIST P-256 private key,
+BIP-32/39 seed material, 256-bit symmetric key.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">48</span></code></p></td>
+<td><p>384</p></td>
+<td><p>NIST P-384 private key.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">64</span></code></p></td>
+<td><p>512</p></td>
+<td><p>BIP-39 maximum, HMAC-SHA-512 key.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">66</span></code></p></td>
+<td><p>521</p></td>
+<td><p>NIST P-521 private key.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">128</span></code></p></td>
+<td><p>1024</p></td>
+<td><p>Very large secrets.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a Bitcoin treasury key, the common choice is <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">32</span></code> (256-bit). For
+an HSM AES wrapping key, choose the size of that key (<code class="docutils literal notranslate"><span class="pre">16</span></code> or <code class="docutils literal notranslate"><span class="pre">32</span></code>).</p>
+</div>
+</section>
+<section id="seed-type">
+<h2>Seed type<a class="headerlink" href="#seed-type" title="Link to this heading"></a></h2>
+<p>The seed type (<code class="docutils literal notranslate"><span class="pre">-t</span></code>) tells the orchestrator how to generate or interpret
+the secret:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-t">
+<span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"> <span class="pre">f</span></span><a class="headerlink" href="#cmdoption-t" title="Link to this definition"></a></dt>
+<dd><p><strong>Fully random</strong> bytes with no structure. The most flexible choice — use
+it for AES keys, HMAC keys, or any opaque secret.
+Valid sizes: <code class="docutils literal notranslate"><span class="pre">16,</span> <span class="pre">32,</span> <span class="pre">48,</span> <span class="pre">64,</span> <span class="pre">128</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-0">
+<span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"> <span class="pre">r</span></span><a class="headerlink" href="#cmdoption-0" title="Link to this definition"></a></dt>
+<dd><p>A <strong>NIST EC “r1” private key</strong> (a valid scalar for P-256 / P-384 / P-521).
+Use when the secret must be a valid EC private key on those curves.
+Valid sizes: <code class="docutils literal notranslate"><span class="pre">32,</span> <span class="pre">48,</span> <span class="pre">66</span></code>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-1">
+<span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"> <span class="pre">k</span></span><a class="headerlink" href="#cmdoption-1" title="Link to this definition"></a></dt>
+<dd><p>A <strong>secp256k1 private key</strong> — the Bitcoin / Ethereum curve.
+Valid size: <code class="docutils literal notranslate"><span class="pre">32</span></code>.</p>
+</dd></dl>
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are protecting a <strong>Bitcoin</strong> key, use <code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">k</span> <span class="pre">-s</span> <span class="pre">32</span></code>. If you just
+need a random secret (e.g. an HSM wrapping key), use <code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">f</span></code>.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a> — where these parameters are supplied.</p></li>
+<li><p><a class="reference internal" href="security_model.html"><span class="doc">Security Model</span></a> — how the quorum maps to your threat model.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

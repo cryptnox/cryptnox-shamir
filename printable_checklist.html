@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Printable Checklist &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/printable_checklist.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Security Model" href="security_model.html" />
+    <link rel="prev" title="Custody Governance &amp; Checklists" href="governance.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/printable_checklist.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/printable_checklist.html" />
+<meta property="og:title" content="Printable Checklist | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="Printable Checklist | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceremony.html">The Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Choosing Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Printable Checklist</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ceremony">Ceremony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annual-verification">Annual verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custodian-change">Custodian change</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lost-damaged-locked-card">Lost / damaged / locked card</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="security_model.html">Security Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Printable Checklist</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="printable-checklist">
+<h1>Printable Checklist<a class="headerlink" href="#printable-checklist" title="Link to this heading"></a></h1>
+<p>A condensed, sign-off version of the custody controls. Print this page and keep
+the signed copies with your custody log. Full detail is in the Governance
+section of the documentation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To print, open this page in a browser and use <strong>Print → Save as PDF</strong>.</p>
+</div>
+<section id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Set ID: ____________   Date: __________   k-of-n: ____ / ____   Seed: ____ B
+Seed checksum: __________________________   PIN level (A/B/C): ____
+</pre></div>
+</div>
+</section>
+<section id="ceremony">
+<h2>Ceremony<a class="headerlink" href="#ceremony" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[ ] Cards from one set; PIN level chosen
+[ ] Offline trusted machine; four-eyes
+[ ] Real HSM RSA public key used (--rsa-key-file)
+[ ] Ceremony completed; backup test PASSED
+[ ] Each storage card's share number written as it is loaded (#1, #2, ...)
+[ ] Card backs filled in, codes only (never full names, no signature):
+    all = Bundle + code + ceremony date (Notes); storage = also share number
+[ ] k-of-n (total + threshold) in the custody log ONLY, never on the cards
+[ ] Wrapped seed imported to HSM, then file destroyed
+[ ] Custody log filled; cards sealed in separate locations
+[ ] Orchestrator reset; Admin card stored separately
+
+Officer 1: ______________   Officer 2: ______________   Date: __________
+</pre></div>
+</div>
+</section>
+<section id="annual-verification">
+<h2>Annual verification<a class="headerlink" href="#annual-verification" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Year: ______
+[ ] Collected cards (all n, or k + rotate): #____  #____  #____  #____
+[ ] backup-test RESULT = PASS
+[ ] Export counters checked against log
+[ ] Cards returned &amp; sealed; log updated
+
+Signed: ______________   Date: __________
+</pre></div>
+</div>
+</section>
+<section id="custodian-change">
+<h2>Custodian change<a class="headerlink" href="#custodian-change" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Leaving: ____________   New holder: ____________   Card #____
+[ ] Card retrieved
+[ ] PIN reset with Admin card + new PIN set (or card re-provisioned)
+[ ] Reassigned; custody log updated
+[ ] backup-test PASSED
+
+Signed: ______________   Date: __________
+</pre></div>
+</div>
+</section>
+<section id="lost-damaged-locked-card">
+<h2>Lost / damaged / locked card<a class="headerlink" href="#lost-damaged-locked-card" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Card #____   Issue: ____________________
+[ ] Forgotten/locked PIN, card in hand -&gt; reset with Admin card
+[ ] Lost/destroyed -&gt; usable cards remaining: ____  (need &gt;= k = ____)
+    [ ] &gt;= k -&gt; recovery OK; plan re-ceremony to restore redundancy
+    [ ] &lt;  k -&gt; CANNOT reconstruct from cards; escalate immediately
+
+Signed: ______________   Date: __________
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

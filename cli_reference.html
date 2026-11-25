@@ -1,0 +1,440 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Reference &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/cli_reference.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="Security Model" href="security_model.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/cli_reference.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/cli_reference.html" />
+<meta property="og:title" content="Command Reference | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="Command Reference | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceremony.html">The Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Choosing Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printable_checklist.html">Printable Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="security_model.html">Security Model</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#global-options">Global options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#workflow-commands">Workflow commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reader-commands">Reader commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#orchestrator-commands">Orchestrator commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#storage-commands">Storage commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pure-software-shamir-no-card">Pure-software Shamir (no card)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Command Reference</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="command-reference">
+<h1>Command Reference<a class="headerlink" href="#command-reference" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">shamir-cli</span></code> command drives the whole system. This page lists every
+command. For guided procedures, see <a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a>, <a class="reference internal" href="recovery.html"><span class="doc">Recovery</span></a> and
+<a class="reference internal" href="backup_test.html"><span class="doc">Backup Test</span></a>.</p>
+<section id="basic-usage">
+<h2>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span><span class="o">[</span>GLOBAL<span class="w"> </span>OPTIONS<span class="o">]</span><span class="w"> </span>GROUP<span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+</section>
+<section id="global-options">
+<h2>Global options<a class="headerlink" href="#global-options" title="Link to this heading"></a></h2>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-r">
+<span id="cmdoption-reader"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--reader</span></span><span class="sig-prename descclassname"> <span class="pre">TEXT</span></span><a class="headerlink" href="#cmdoption-r" title="Link to this definition"></a></dt>
+<dd><p>Select a reader by a case-insensitive substring of its name.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-S">
+<span id="cmdoption-simulator"></span><span class="sig-name descname"><span class="pre">-S</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--simulator</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-S" title="Link to this definition"></a></dt>
+<dd><p>Use the JCOP simulator on <code class="docutils literal notranslate"><span class="pre">localhost:8050</span></code> instead of a physical reader.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-sim-port">
+<span class="sig-name descname"><span class="pre">--sim-port</span></span><span class="sig-prename descclassname"> <span class="pre">INTEGER</span></span><a class="headerlink" href="#cmdoption-sim-port" title="Link to this definition"></a></dt>
+<dd><p>Simulator port (default <code class="docutils literal notranslate"><span class="pre">8050</span></code>).</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-v">
+<span id="cmdoption-verbose"></span><span class="sig-name descname"><span class="pre">-v</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--verbose</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-v" title="Link to this definition"></a></dt>
+<dd><p>Print the raw APDU traffic, for debugging.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-q">
+<span id="cmdoption-quiet"></span><span class="sig-name descname"><span class="pre">-q</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--quiet</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-q" title="Link to this definition"></a></dt>
+<dd><p>Suppress non-essential output.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-json">
+<span class="sig-name descname"><span class="pre">--json</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-json" title="Link to this definition"></a></dt>
+<dd><p>Emit machine-readable JSON, for scripting and integration.</p>
+</dd></dl>
+
+</section>
+<section id="workflow-commands">
+<h2>Workflow commands<a class="headerlink" href="#workflow-commands" title="Link to this heading"></a></h2>
+<p>The high-level, guided procedures. <strong>Start here.</strong></p>
+<section id="full-ceremony">
+<h3>full-ceremony<a class="headerlink" href="#full-ceremony" title="Link to this heading"></a></h3>
+<p>Generate a seed (or import one), split it, and distribute shares to storage cards.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>workflow<span class="w"> </span>full-ceremony<span class="w"> </span>-n<span class="w"> </span>N<span class="w"> </span>-k<span class="w"> </span>K<span class="w"> </span>-s<span class="w"> </span>SIZE<span class="w"> </span><span class="o">[</span>-t<span class="w"> </span>TYPE<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">[</span>--blessings-bundle<span class="w"> </span>FILE<span class="o">]</span><span class="w"> </span><span class="o">[</span>--rsa-key-file<span class="w"> </span>FILE<span class="o">]</span><span class="w"> </span><span class="o">[</span>--output-dir<span class="w"> </span>DIR<span class="o">]</span>
+<span class="w">    </span><span class="o">[</span>--secret-file<span class="w"> </span>FILE<span class="w"> </span><span class="p">|</span><span class="w"> </span>--secret<span class="w"> </span>HEX<span class="o">]</span>
+</pre></div>
+</div>
+<p>A real ceremony consumes the factory blessing bundle (<code class="docutils literal notranslate"><span class="pre">*.bundle.json</span></code>);
+<code class="docutils literal notranslate"><span class="pre">--blessings-bundle</span></code> is auto-discovered in the working dir if omitted. Only
+<code class="docutils literal notranslate"><span class="pre">--test-mode</span></code> runs without one.</p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">--secret-file</span></code> (or <code class="docutils literal notranslate"><span class="pre">--secret</span></code>) to <strong>import</strong> an existing secret instead
+of generating one on-card — same cards, same split, but the seed is not re-wrapped
+to an HSM. See <a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a> for the full procedure.</p>
+</section>
+<section id="full-recovery">
+<h3>full-recovery<a class="headerlink" href="#full-recovery" title="Link to this heading"></a></h3>
+<p>Reconstruct the seed from <code class="docutils literal notranslate"><span class="pre">k</span></code> storage cards and re-wrap it for a new HSM.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>workflow<span class="w"> </span>full-recovery<span class="w"> </span>-k<span class="w"> </span>K<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">[</span>--rsa-key-file<span class="w"> </span>FILE<span class="o">]</span><span class="w"> </span><span class="o">[</span>--output-file<span class="w"> </span>FILE<span class="o">]</span><span class="w"> </span><span class="o">[</span>--pin<span class="w"> </span>PIN<span class="o">]</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="recovery.html"><span class="doc">Recovery</span></a>.</p>
+</section>
+<section id="backup-test">
+<h3>backup-test<a class="headerlink" href="#backup-test" title="Link to this heading"></a></h3>
+<p>Verify that shares still reconstruct the seed, without exporting it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>workflow<span class="w"> </span>backup-test<span class="w"> </span>-k<span class="w"> </span>K<span class="w"> </span><span class="o">[</span>--pin<span class="w"> </span>PIN<span class="o">]</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="backup_test.html"><span class="doc">Backup Test</span></a>.</p>
+</section>
+<section id="ceremony-import">
+<h3>ceremony-import<a class="headerlink" href="#ceremony-import" title="Link to this heading"></a></h3>
+<p>Import an <strong>existing</strong> seed and back it up with Shamir (rather than generating
+a fresh one on-card). The secret is <strong>required</strong> — pass <code class="docutils literal notranslate"><span class="pre">--secret-file</span></code> (a hex
+or raw file) or <code class="docutils literal notranslate"><span class="pre">--secret</span></code> (hex string); its length must equal <code class="docutils literal notranslate"><span class="pre">-s</span></code>. There is
+no random fallback: for a fresh seed use <code class="docutils literal notranslate"><span class="pre">full-ceremony</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>workflow<span class="w"> </span>ceremony-import<span class="w"> </span>-n<span class="w"> </span>N<span class="w"> </span>-k<span class="w"> </span>K<span class="w"> </span>-s<span class="w"> </span>SIZE<span class="w"> </span><span class="o">[</span>-t<span class="w"> </span>TYPE<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">(</span>--secret-file<span class="w"> </span>FILE<span class="w"> </span><span class="p">|</span><span class="w"> </span>--secret<span class="w"> </span>HEX<span class="o">)</span><span class="w"> </span><span class="o">[</span>--output-dir<span class="w"> </span>DIR<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="reader-commands">
+<h2>Reader commands<a class="headerlink" href="#reader-commands" title="Link to this heading"></a></h2>
+<section id="list">
+<h3>list<a class="headerlink" href="#list" title="Link to this heading"></a></h3>
+<p>List the connected smart card readers.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>reader<span class="w"> </span>list
+</pre></div>
+</div>
+</section>
+</section>
+<section id="orchestrator-commands">
+<h2>Orchestrator commands<a class="headerlink" href="#orchestrator-commands" title="Link to this heading"></a></h2>
+<p>These act on the orchestrator card. In normal use the <strong>workflow</strong> commands
+above drive it for you — the two commands below are the only ones you invoke
+directly.</p>
+<section id="info">
+<h3>info<a class="headerlink" href="#info" title="Link to this heading"></a></h3>
+<p>Show the card type, firmware version, and state.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>orchestrator<span class="w"> </span>info
+</pre></div>
+</div>
+</section>
+<section id="reset">
+<h3>reset<a class="headerlink" href="#reset" title="Link to this heading"></a></h3>
+<p>Reset the orchestrator to the initial state (<code class="docutils literal notranslate"><span class="pre">0x00</span></code>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>orchestrator<span class="w"> </span>reset
+</pre></div>
+</div>
+</section>
+</section>
+<section id="storage-commands">
+<h2>Storage commands<a class="headerlink" href="#storage-commands" title="Link to this heading"></a></h2>
+<p>These act on a storage card.</p>
+<section id="id1">
+<h3>info<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>Show the card type, version, and state.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>storage<span class="w"> </span>info
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>reset<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>Reset the storage card to <code class="docutils literal notranslate"><span class="pre">0x00</span></code> (requires the PIN).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>storage<span class="w"> </span>reset<span class="w"> </span>--pin<span class="w"> </span><span class="m">0000</span>
+</pre></div>
+</div>
+</section>
+<section id="verify-pin-change-pin">
+<h3>verify-pin / change-pin<a class="headerlink" href="#verify-pin-change-pin" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>storage<span class="w"> </span>verify-pin<span class="w"> </span><span class="o">[</span>PIN<span class="o">]</span>
+shamir-cli<span class="w"> </span>storage<span class="w"> </span>change-pin<span class="w"> </span><span class="o">[</span>NEW_PIN<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="read-counter">
+<h3>read-counter<a class="headerlink" href="#read-counter" title="Link to this heading"></a></h3>
+<p>Read the export counter (for audit — see <a class="reference internal" href="security_model.html"><span class="doc">Security Model</span></a>).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>storage<span class="w"> </span>read-counter
+</pre></div>
+</div>
+</section>
+<section id="pedersen-verify">
+<h3>pedersen-verify<a class="headerlink" href="#pedersen-verify" title="Link to this heading"></a></h3>
+<p>Verify a single card — or a whole set with <code class="docutils literal notranslate"><span class="pre">--readers</span></code> — against its
+ceremony, without exporting the seed. See <a class="reference internal" href="backup_test.html#single-card-verify"><span class="std std-ref">Checking a single card</span></a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>storage<span class="w"> </span>pedersen-verify
+shamir-cli<span class="w"> </span>storage<span class="w"> </span>pedersen-verify<span class="w"> </span>--readers<span class="w"> </span><span class="s2">"&lt;reader-1&gt;,&lt;reader-2&gt;,..."</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pure-software-shamir-no-card">
+<h2>Pure-software Shamir (no card)<a class="headerlink" href="#pure-software-shamir-no-card" title="Link to this heading"></a></h2>
+<p>Run Shamir’s maths entirely in software — useful for testing and for
+understanding the scheme. <strong>No secret-bearing hardware is involved.</strong></p>
+<section id="split">
+<h3>split<a class="headerlink" href="#split" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>shamir<span class="w"> </span>split<span class="w"> </span>&lt;SECRET_HEX&gt;<span class="w"> </span>-k<span class="w"> </span>K<span class="w"> </span>-n<span class="w"> </span>N<span class="w"> </span>-s<span class="w"> </span>SIZE
+</pre></div>
+</div>
+</section>
+<section id="recover">
+<h3>recover<a class="headerlink" href="#recover" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>shamir<span class="w"> </span>recover<span class="w"> </span>-s<span class="w"> </span>SIZE<span class="w"> </span>--share<span class="w"> </span><span class="m">1</span>:HEX<span class="w"> </span>--share<span class="w"> </span><span class="m">2</span>:HEX<span class="w"> </span>...
+</pre></div>
+</div>
+</section>
+<section id="verify">
+<h3>verify<a class="headerlink" href="#verify" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>shamir<span class="w"> </span>verify<span class="w"> </span>&lt;SECRET_HEX&gt;<span class="w"> </span>-s<span class="w"> </span>SIZE<span class="w"> </span>--share<span class="w"> </span><span class="m">1</span>:HEX<span class="w"> </span>...
+</pre></div>
+</div>
+<p>A concrete end-to-end example — split a 16-byte secret 2-of-3, then recover it
+from any two shares:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>shamir-cli<span class="w"> </span>shamir<span class="w"> </span>split<span class="w"> </span>000102030405060708090a0b0c0d0e0f<span class="w"> </span>-k<span class="w"> </span><span class="m">2</span><span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>-s<span class="w"> </span><span class="m">16</span>
+<span class="go">  Share  1: 555f6ab7fdfe2769ceb6da59773e816d</span>
+<span class="go">  Share  2: aabdd36cf7f748cc9564aaa7e26ff4cb</span>
+<span class="go">  Share  3: 001c3c21f1f06a2f5c127af64da16b46</span>
+
+<span class="gp">$ </span>shamir-cli<span class="w"> </span>shamir<span class="w"> </span>recover<span class="w"> </span>-s<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--share<span class="w"> </span><span class="m">1</span>:555f6ab7fdfe2769ceb6da59773e816d<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--share<span class="w"> </span><span class="m">3</span>:001c3c21f1f06a2f5c127af64da16b46
+<span class="go">  Recovered secret: 000102030405060708090a0b0c0d0e0f</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These commands never touch a card and are safe to experiment with. Do not
+use them on a <strong>real</strong> secret on a networked machine — the secret is
+handled in plaintext in the host’s memory, unlike the hardware workflows.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a>, <a class="reference internal" href="recovery.html"><span class="doc">Recovery</span></a>, <a class="reference internal" href="backup_test.html"><span class="doc">Backup Test</span></a> — the guided
+procedures built on these commands.</p></li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

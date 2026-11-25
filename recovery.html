@@ -1,0 +1,370 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recovery &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/recovery.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Backup Test" href="backup_test.html" />
+    <link rel="prev" title="The Ceremony" href="ceremony.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/recovery.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/recovery.html" />
+<meta property="og:title" content="Recovery | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="Recovery | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceremony.html">The Ceremony</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Recovery</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#before-you-begin">Before you begin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-recovery">Running recovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verifying-the-result">Verifying the result</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operational-notes">Operational notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Choosing Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printable_checklist.html">Printable Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="security_model.html">Security Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Recovery</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="recovery">
+<h1>Recovery<a class="headerlink" href="#recovery" title="Link to this heading"></a></h1>
+<p><strong>Recovery</strong> reconstructs the seed from <code class="docutils literal notranslate"><span class="pre">k</span></code> storage cards — for example
+after the production HSM is lost or destroyed — and re-wraps it for a new HSM.</p>
+<p>This page uses a <strong>2-of-3</strong> deployment (any two of the three cards) <strong>purely
+as a worked example</strong> — the procedure is identical for any supported threshold
+(<code class="docutils literal notranslate"><span class="pre">k</span></code> from 2 to 7, <code class="docutils literal notranslate"><span class="pre">n</span></code> from 2 to 12).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>2-of-3 is just an example.</strong> Recover with whatever <code class="docutils literal notranslate"><span class="pre">k</span></code> your deployment
+was created with.</p>
+</div>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/recovery_flow.svg"><img alt="Recovery steps: collect k cards, reconstruct seed, wrap to new HSM" src="_images/recovery_flow.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Recovery at a glance — <em>k</em> storage cards are collected, the seed is
+reconstructed on the orchestrator, then re-wrapped for the new HSM.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="before-you-begin">
+<h2>Before you begin<a class="headerlink" href="#before-you-begin" title="Link to this heading"></a></h2>
+<p>Prepare:</p>
+<ul class="simple">
+<li><p><strong>1 orchestrator card</strong> (any orchestrator in state <code class="docutils literal notranslate"><span class="pre">0x00</span></code>; it need not be
+the one used for the ceremony).</p></li>
+<li><p><strong>``k`` storage cards</strong> holding valid shares, with their PINs known.</p></li>
+<li><p>The <strong>RSA public key of the new HSM</strong> where the seed will be restored
+(e.g. <code class="docutils literal notranslate"><span class="pre">new_hsm_pubkey.pem</span></code>).</p></li>
+<li><p>Your record of <strong>which physical card holds which share index</strong> (see
+<a class="reference internal" href="ceremony.html#ceremony-labelling"><span class="std std-ref">Card order (share numbers)</span></a>).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Card order.</strong> On current firmware each storage card reports its <strong>own</strong> share
+index, so recovery reconstructs correctly <strong>whatever order you insert the cards</strong>
+in — the tool reads the true index from each card. Insertion order only matters on
+<strong>older cards</strong> that do not expose their index, where the tool falls back to the
+order of insertion (first inserted = share #1, …) and a wrong order silently yields
+the <strong>wrong secret</strong>. Either way, <strong>verify the checksum</strong> (below) before trusting
+the result — it is the definitive check.</p>
+</div>
+</section>
+<section id="running-recovery">
+<h2>Running recovery<a class="headerlink" href="#running-recovery" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>workflow<span class="w"> </span>full-recovery<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-k<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--rsa-key-file<span class="w"> </span>new_hsm_pubkey.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output-file<span class="w"> </span>recovered_seed.bin<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pin<span class="w"> </span><span class="m">0000</span>
+</pre></div>
+</div>
+<p>Options:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26.0%" />
+<col style="width: 74.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-k,</span> <span class="pre">--threshold</span></code></p></td>
+<td><p>Number of shares to collect (must equal the ceremony’s <code class="docutils literal notranslate"><span class="pre">k</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span></code></p></td>
+<td><p>RSA public key of the <strong>new</strong> HSM to wrap the recovered seed for.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--output-file</span></code></p></td>
+<td><p>Where to write the wrapped recovered seed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--pin</span></code></p></td>
+<td><p>Storage card PIN (default <code class="docutils literal notranslate"><span class="pre">0000</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+<p>The tool prompts for the orchestrator and then each storage card:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Insert Orchestrator card and press Enter...
+Insert Storage card #1 and press Enter...
+Swap back to Orchestrator card and press Enter...
+Insert Storage card #2 and press Enter...
+Swap back to Orchestrator card and press Enter...
+Recovery checksum: 33 F4 A2 59 31 57 9D 19
+Wrapped seed saved to recovered_seed.bin
+</pre></div>
+</div>
+</section>
+<section id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>The orchestrator is reset and enters <strong>Recovery</strong> mode.</p></li>
+<li><p>The new HSM RSA wrapping key is loaded; the orchestrator generates an
+ephemeral encryption key.</p></li>
+<li><p>For each of the <code class="docutils literal notranslate"><span class="pre">k</span></code> cards:</p>
+<ul class="simple">
+<li><p>You verify the PIN.</p></li>
+<li><p>The storage card <strong>re-encrypts</strong> its share to the orchestrator’s key and
+hands it over. The host only relays opaque ciphertext.</p></li>
+<li><p>The orchestrator decrypts the share internally.</p></li>
+</ul>
+</li>
+<li><p>The orchestrator reconstructs the seed (Lagrange interpolation, performed
+on-card) and returns a <strong>checksum</strong>.</p></li>
+<li><p>The orchestrator exports the <strong>RSA-wrapped</strong> recovered seed to the output
+file.</p></li>
+</ol>
+</section>
+<section id="verifying-the-result">
+<h2>Verifying the result<a class="headerlink" href="#verifying-the-result" title="Link to this heading"></a></h2>
+<p><strong>Always compare the</strong> <code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">checksum</span></code> <strong>against the seed checksum you
+recorded at the ceremony.</strong></p>
+<ul class="simple">
+<li><p><strong>Match</strong> → the correct seed was reconstructed. Import
+<code class="docutils literal notranslate"><span class="pre">recovered_seed.bin</span></code> into the new HSM, then destroy the file.</p></li>
+<li><p><strong>Mismatch</strong> → you collected the wrong cards, or inserted them in the wrong
+order. Do <strong>not</strong> import the result. Re-run, inserting the correctly
+labelled cards in share-index order.</p></li>
+</ul>
+</section>
+<section id="operational-notes">
+<h2>Operational notes<a class="headerlink" href="#operational-notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Export counter.</strong> Every real share read during a recovery increments a
+counter inside the storage card. Inspect it for audit with
+<code class="docutils literal notranslate"><span class="pre">shamir-cli</span> <span class="pre">storage</span> <span class="pre">read-counter</span></code>. An unexpected increase means a share
+was read outside a sanctioned recovery.</p></li>
+<li><p><strong>PIN lockout.</strong> Three consecutive wrong PINs lock the card. Guard the PINs
+and the lockout budget.</p></li>
+<li><p><strong>The PC never sees a plaintext share.</strong> Shares move card-to-card over an
+encrypted channel; the host only relays ciphertext.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recovery only <em>reads</em> the storage cards — it does <strong>not</strong> consume or alter
+the shares. You can recover as many times as needed (each read increments
+the audit counter).</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a> — how the shares and labels were created.</p></li>
+<li><p><a class="reference internal" href="backup_test.html"><span class="doc">Backup Test</span></a> — verify shares <strong>without</strong> exporting the seed.</p></li>
+<li><p><a class="reference internal" href="troubleshooting.html#troubleshooting-wrong-pin"><span class="std std-ref">Wrong PIN</span></a> — recovering from PIN errors.</p></li>
+<li><p><a class="reference internal" href="security_model.html"><span class="doc">Security Model</span></a> — what the host can and cannot see.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

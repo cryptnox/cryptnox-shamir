@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/overview.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Concepts" href="concepts.html" />
+    <link rel="prev" title="Cryptnox Shamir" href="index.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/overview.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/overview.html" />
+<meta property="og:title" content="Overview | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="Overview | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#who-this-is-for">Who this is for</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#why-hardware">Why hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-hardware">Supported hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-you-get">What you get</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#at-a-glance">At a glance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceremony.html">The Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Choosing Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printable_checklist.html">Printable Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="security_model.html">Security Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">cryptnox-shamir</span></code> system is a hardware-backed scheme for <strong>splitting,
+distributing, and recovering a single high-value secret</strong> across a set of
+smart cards, using <a class="reference external" href="https://en.wikipedia.org/wiki/Shamir%27s_secret_sharing">Shamir’s Secret Sharing</a>.</p>
+<p>A secret is split into <code class="docutils literal notranslate"><span class="pre">n</span></code> <em>shares</em> and written to <code class="docutils literal notranslate"><span class="pre">n</span></code> smart cards. Any
+<code class="docutils literal notranslate"><span class="pre">k</span></code> of those cards (the <em>threshold</em>) can reconstruct the secret; any <code class="docutils literal notranslate"><span class="pre">k-1</span></code>
+of them reveal <strong>nothing</strong> — not partial information, nothing. This is the
+mathematical guarantee of Shamir’s scheme.</p>
+<section id="who-this-is-for">
+<h2>Who this is for<a class="headerlink" href="#who-this-is-for" title="Link to this heading"></a></h2>
+<p>This documentation targets <strong>institutional custodians</strong> of cryptographic
+secrets, for example:</p>
+<ul class="simple">
+<li><p><strong>Corporate Bitcoin treasuries</strong> protecting the private key (or the HSM
+wrapping key) that controls cold-storage funds.</p></li>
+<li><p><strong>Funds and exchanges</strong> that need quorum-based, auditable control over a
+master key, with no single point of compromise.</p></li>
+<li><p><strong>Any organisation</strong> subject to a “no single person can move the funds”
+control requirement, where <code class="docutils literal notranslate"><span class="pre">k</span></code> officers out of <code class="docutils literal notranslate"><span class="pre">n</span></code> must cooperate.</p></li>
+</ul>
+<p>The typical goal is a <strong>disaster-recovery backup</strong> of a key that normally
+lives inside a Hardware Security Module (HSM): the live key stays in the HSM,
+and the Shamir cards are the offline, geographically distributed backup that
+can restore it if the HSM is lost or destroyed.</p>
+</section>
+<section id="why-hardware">
+<h2>Why hardware<a class="headerlink" href="#why-hardware" title="Link to this heading"></a></h2>
+<p>A purely software implementation of Shamir’s scheme exposes the secret in the
+memory of the machine that splits or reconstructs it. The Cryptnox system
+moves the sensitive operations <strong>onto the cards</strong>:</p>
+<ul class="simple">
+<li><p>The seed is generated, split, and reconstructed <strong>inside the orchestrator
+card</strong>. The host PC never sees it in plaintext.</p></li>
+<li><p>Each share is stored <strong>inside a storage card</strong>, encrypted, and protected by
+a PIN. A stolen card reveals nothing without the PIN, and one share alone is
+useless.</p></li>
+<li><p>Shares move <strong>card-to-card over an encrypted channel</strong>. The host only
+relays opaque ciphertext.</p></li>
+</ul>
+</section>
+<section id="supported-hardware">
+<h2>Supported hardware<a class="headerlink" href="#supported-hardware" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Cryptnox Orchestrator card</strong> — performs all cryptography (1 required).</p></li>
+<li><p><strong>Cryptnox Storage cards</strong> — hold one encrypted share each (2 to 12).</p></li>
+<li><p><strong>A contact PC/SC smart card reader.</strong> Contactless / NFC is <strong>not
+supported</strong> — both applets reject it.</p></li>
+</ul>
+<p>Order card sets through the <a class="reference external" href="https://cryptnox.com/shamir-secret-sharing-cards/">Shamir Secret Sharing Cards page</a>;
+readers are at <a class="reference external" href="https://shop.cryptnox.com/product/cryptnox-smartcard-reader/">shop.cryptnox.com</a>.</p>
+</section>
+<section id="what-you-get">
+<h2>What you get<a class="headerlink" href="#what-you-get" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>A command-line tool, <code class="docutils literal notranslate"><span class="pre">shamir-cli</span></code>, that drives the entire lifecycle:
+ceremony, backup test, and recovery.</p></li>
+<li><p>Guided, interactive workflows that prompt you to insert and swap cards.</p></li>
+<li><p>A pure-software Shamir mode for testing the maths without hardware.</p></li>
+</ul>
+</section>
+<section id="at-a-glance">
+<h2>At a glance<a class="headerlink" href="#at-a-glance" title="Link to this heading"></a></h2>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/architecture.svg"><img alt="Orchestrator card, storage cards, and HSM" src="_images/architecture.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The orchestrator splits the seed across the storage cards over an encrypted
+channel, and exports the seed RSA-wrapped to the HSM.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="next-steps">
+<h2>Next steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>New to the scheme? Read <a class="reference internal" href="concepts.html"><span class="doc">Concepts</span></a>.</p></li>
+<li><p>Ready to install? See <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>.</p></li>
+<li><p>Running your first ceremony? See <a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a>.</p></li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="security_model.html"><span class="doc">Security Model</span></a> — the threat model, for risk and compliance teams.</p></li>
+<li><p><a class="reference internal" href="parameters.html"><span class="doc">Choosing Parameters</span></a> — choosing the <code class="docutils literal notranslate"><span class="pre">k</span></code>-of-<code class="docutils literal notranslate"><span class="pre">n</span></code> quorum for your policy.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

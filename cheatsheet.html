@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cheat sheet &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/cheatsheet.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Ceremony" href="ceremony.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/cheatsheet.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/cheatsheet.html" />
+<meta property="og:title" content="Cheat sheet | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="Cheat sheet | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cheat sheet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#i-want-to-run-a-ceremony">I want to run a ceremony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-want-to-reconstruct-my-secret-into-a-wallet">I want to reconstruct my secret into a wallet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-want-to-reset-a-storage-card-pin-with-the-admin-card">I want to reset a storage card PIN with the Admin card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-want-to-check-my-backup-is-intact">I want to check my backup is intact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#i-want-to-reset-a-card-so-i-can-reuse-it">I want to reset a card so I can reuse it</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ceremony.html">The Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Choosing Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printable_checklist.html">Printable Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="security_model.html">Security Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Cheat sheet</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cheat-sheet">
+<h1>Cheat sheet<a class="headerlink" href="#cheat-sheet" title="Link to this heading"></a></h1>
+<p>The three things people ask for most, as copy-paste one-liners. Each recipe
+links to the full procedure — read it before doing this for real. Values like
+<code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">3</span> <span class="pre">-k</span> <span class="pre">2</span></code> and the reader names are <strong>examples</strong>; substitute your own.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Reader selection.</strong> Pass explicit reader names for a <strong>multi-reader
+bench</strong> (all cards powered at once). <strong>Omit</strong> them for a <strong>single reader</strong>
+(you are prompted to swap cards). Find the exact names with
+<code class="docutils literal notranslate"><span class="pre">shamir-cli</span> <span class="pre">reader</span> <span class="pre">list</span></code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>See what’s on your readers first</strong> — always safe, read-only:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">shamir</span><span class="o">-</span><span class="n">cli</span> <span class="n">reader</span> <span class="nb">list</span>
+<span class="n">shamir</span><span class="o">-</span><span class="n">cli</span> <span class="o">--</span><span class="n">reader</span> <span class="s2">"&lt;admin-reader&gt;"</span> <span class="n">orchestrator</span> <span class="n">info</span>
+<span class="n">shamir</span><span class="o">-</span><span class="n">cli</span> <span class="o">--</span><span class="n">reader</span> <span class="s2">"&lt;storage-reader&gt;"</span> <span class="n">storage</span> <span class="n">info</span>
+</pre></div>
+</div>
+</div>
+<section id="i-want-to-run-a-ceremony">
+<h2>I want to run a ceremony<a class="headerlink" href="#i-want-to-run-a-ceremony" title="Link to this heading"></a></h2>
+<p>Generate a master secret, split it <code class="docutils literal notranslate"><span class="pre">k</span></code>-of-<code class="docutils literal notranslate"><span class="pre">n</span></code>, write the shares to the
+storage cards, run the backup test, and wrap the seed for the target — here a
+<strong>Cryptnox wallet</strong> used as the HSM.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2-of-3, 256-bit random seed, wrapped straight into a Cryptnox wallet</span>
+shamir-cli<span class="w"> </span>workflow<span class="w"> </span>full-ceremony<span class="w"> </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span>-k<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--blessings-bundle<span class="w"> </span>./batch.bundle.json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wallet-hsm<span class="w"> </span><span class="s2">"Cryptnox NFC"</span><span class="w"> </span>--wallet-pin<span class="w"> </span><span class="m">0000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--output-dir<span class="w"> </span>./ceremony-out
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>A real ceremony consumes the factory blessing bundle</strong> (<code class="docutils literal notranslate"><span class="pre">*.bundle.json</span></code>):
+it carries the group public key and each card’s pre-signed blessing, which the
+orchestrator needs to accept the storage cards. You may <strong>omit</strong>
+<code class="docutils literal notranslate"><span class="pre">--blessings-bundle</span></code> only if exactly one <code class="docutils literal notranslate"><span class="pre">*.bundle.json</span></code> sits in the
+working directory (it is auto-discovered). Only <code class="docutils literal notranslate"><span class="pre">--test-mode</span></code> runs without a
+bundle.</p>
+</div>
+<p>Wrap for an <strong>external HSM</strong> instead of a wallet with
+<code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span> <span class="pre">hsm_pubkey.pem</span></code> (or <code class="docutils literal notranslate"><span class="pre">--kms-key-id</span></code> for AWS KMS). On a bench,
+add <code class="docutils literal notranslate"><span class="pre">--orch-reader</span> <span class="pre">...</span> <span class="pre">--storage-readers</span> <span class="pre">r1,r2,r3</span></code>.</p>
+<p>→ Full guide: <a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a>.</p>
+</section>
+<section id="i-want-to-reconstruct-my-secret-into-a-wallet">
+<h2>I want to reconstruct my secret into a wallet<a class="headerlink" href="#i-want-to-reconstruct-my-secret-into-a-wallet" title="Link to this heading"></a></h2>
+<p>Collect <code class="docutils literal notranslate"><span class="pre">k</span></code> storage cards, rebuild the seed on an orchestrator, and import it
+<strong>directly into a Cryptnox wallet</strong> (the seed never lands in a file).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># any 2 of the 3 cards; insert them in share-index order when prompted</span>
+shamir-cli<span class="w"> </span>workflow<span class="w"> </span>full-recovery<span class="w"> </span>-k<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--wallet-hsm<span class="w"> </span><span class="s2">"Cryptnox NFC"</span><span class="w"> </span>--wallet-pin<span class="w"> </span><span class="m">0000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--pin<span class="w"> </span><span class="m">0000</span>
+</pre></div>
+</div>
+<p>Re-wrap for a <strong>new HSM</strong> instead with
+<code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span> <span class="pre">new_hsm_pubkey.pem</span> <span class="pre">--output-file</span> <span class="pre">recovered_seed.bin</span></code>.</p>
+<p>→ Full guide: <a class="reference internal" href="recovery.html"><span class="doc">Recovery</span></a>.</p>
+</section>
+<section id="i-want-to-reset-a-storage-card-pin-with-the-admin-card">
+<h2>I want to reset a storage card PIN with the Admin card<a class="headerlink" href="#i-want-to-reset-a-storage-card-pin-with-the-admin-card" title="Link to this heading"></a></h2>
+<p>Reset a forgotten/locked PIN <strong>without knowing the old one</strong>, using the Admin
+card (nonce challenge, signed by the Admin, verified by the storage card).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prerequisite (set-once, FRESH card only — normally done at the factory):</span>
+<span class="c1"># the storage must carry the admin public key. On a fresh (0x00) card:</span>
+shamir-cli<span class="w"> </span>--reader<span class="w"> </span><span class="s2">"&lt;admin-reader&gt;"</span><span class="w"> </span>admin<span class="w"> </span>get-pubkey<span class="w">          </span><span class="c1"># -&gt; &lt;admin_pub hex&gt;</span>
+shamir-cli<span class="w"> </span>--reader<span class="w"> </span><span class="s2">"&lt;storage-reader&gt;"</span><span class="w"> </span>storage<span class="w"> </span>set-admin-pubkey<span class="w"> </span>&lt;admin_pub<span class="w"> </span>hex&gt;
+
+<span class="c1"># Reset the PIN — bench (two readers, nothing to swap):</span>
+shamir-cli<span class="w"> </span>workflow<span class="w"> </span>reset-pin<span class="w"> </span>--new-pin<span class="w"> </span><span class="m">1234</span><span class="w"> </span>--admin-pin<span class="w"> </span><span class="m">0000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--storage-reader<span class="w"> </span><span class="s2">"&lt;storage-reader&gt;"</span><span class="w"> </span>--admin-reader<span class="w"> </span><span class="s2">"&lt;admin-reader&gt;"</span>
+
+<span class="c1"># ...or single reader (insert/​swap the cards when prompted):</span>
+shamir-cli<span class="w"> </span>workflow<span class="w"> </span>reset-pin<span class="w"> </span>--new-pin<span class="w"> </span><span class="m">1234</span><span class="w"> </span>--admin-pin<span class="w"> </span><span class="m">0000</span>
+</pre></div>
+</div>
+<p>Verify afterwards with <code class="docutils literal notranslate"><span class="pre">shamir-cli</span> <span class="pre">--reader</span> <span class="pre">&quot;&lt;storage-reader&gt;&quot;</span> <span class="pre">storage</span> <span class="pre">verify-pin</span> <span class="pre">1234</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>The Admin card has its own PIN</strong> (<code class="docutils literal notranslate"><span class="pre">--admin-pin</span></code>, default <code class="docutils literal notranslate"><span class="pre">0000</span></code>): it refuses
+to sign a reset until that PIN is verified — so a lost/stolen Admin card <strong>alone</strong>
+cannot reset anything (two-factor: possession <strong>+</strong> PIN). It allows <strong>10</strong> attempts
+and its lockout is <strong>irreversible</strong> (nothing sits above the Admin card), so keep the
+admin PIN safe and change it from the default at provisioning
+(<code class="docutils literal notranslate"><span class="pre">shamir-cli</span> <span class="pre">admin</span> <span class="pre">change-pin</span> <span class="pre">&lt;new&gt;</span> <span class="pre">--pin</span> <span class="pre">&lt;current&gt;</span></code>).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The admin public key must be provisioned on the storage card <strong>before</strong> the
+ceremony loads its share (it is accepted only on a fresh card). The factory does
+this during personalization; a card already carrying a share cannot be made
+admin-resettable retroactively.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you <strong>know</strong> the current PIN and just want to change it (no Admin card),
+use <code class="docutils literal notranslate"><span class="pre">storage</span> <span class="pre">verify-pin</span> <span class="pre">&lt;old&gt;</span></code> then <code class="docutils literal notranslate"><span class="pre">storage</span> <span class="pre">change-pin</span> <span class="pre">&lt;new&gt;</span></code>.</p>
+</div>
+<p>→ Context and custody policy: <a class="reference internal" href="governance.html"><span class="doc">Custody Governance &amp; Checklists</span></a>.</p>
+</section>
+<section id="i-want-to-check-my-backup-is-intact">
+<h2>I want to check my backup is intact<a class="headerlink" href="#i-want-to-check-my-backup-is-intact" title="Link to this heading"></a></h2>
+<p>Confirm <code class="docutils literal notranslate"><span class="pre">k</span></code> storage cards still reconstruct the original secret — <strong>without
+exporting the seed and without incrementing the read counter</strong> of the cards.
+This is the safe, repeatable health check.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>workflow<span class="w"> </span>backup-test<span class="w"> </span>-k<span class="w"> </span><span class="m">2</span><span class="w"> </span>--pin<span class="w"> </span><span class="m">0000</span>
+</pre></div>
+</div>
+<p>It reports the reconstructed checksum for you to compare against the value
+recorded at the ceremony. Read counters stay untouched, so you can run it as
+often as you like.</p>
+<p>→ Full guide: <a class="reference internal" href="backup_test.html"><span class="doc">Backup Test</span></a>.</p>
+</section>
+<section id="i-want-to-reset-a-card-so-i-can-reuse-it">
+<h2>I want to reset a card so I can reuse it<a class="headerlink" href="#i-want-to-reset-a-card-so-i-can-reuse-it" title="Link to this heading"></a></h2>
+<p>Return a card to the factory state (state <code class="docutils literal notranslate"><span class="pre">0x00</span></code>) to start a fresh ceremony
+or re-provision it.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Orchestrator — back to 0x00 (e.g. after a recovery left it at 0x44):</span>
+shamir-cli<span class="w"> </span>--reader<span class="w"> </span><span class="s2">"&lt;admin-reader&gt;"</span><span class="w"> </span>orchestrator<span class="w"> </span>reset
+
+<span class="c1"># Storage — requires the current PIN AND a typed confirmation:</span>
+shamir-cli<span class="w"> </span>--reader<span class="w"> </span><span class="s2">"&lt;storage-reader&gt;"</span><span class="w"> </span>storage<span class="w"> </span>reset<span class="w"> </span>--pin<span class="w"> </span><span class="m">0000</span>
+<span class="c1">#   -&gt; prompts: Type 'I understand' to proceed</span>
+
+<span class="c1"># ...in a script, skip the confirmation with --yes:</span>
+shamir-cli<span class="w"> </span>--reader<span class="w"> </span><span class="s2">"&lt;storage-reader&gt;"</span><span class="w"> </span>storage<span class="w"> </span>reset<span class="w"> </span>--pin<span class="w"> </span><span class="m">0000</span><span class="w"> </span>--yes
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Resetting a <strong>storage</strong> card <strong>permanently destroys its share</strong> and cannot be
+undone. The command makes you type <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">understand</span></code> first; <code class="docutils literal notranslate"><span class="pre">--yes</span></code> bypasses
+that for automation. Only reset a card whose share you no longer need, or
+after a successful recovery. Resetting the <strong>orchestrator</strong> is harmless — it
+holds no long-term secret, so it needs no confirmation.</p>
+<p>The <strong>Admin card has no reset</strong>: its key is the fleet’s PIN-reset root (no
+rotation path), so it is permanent — decommissioning an Admin card is a factory
+re-flash, not a field operation.</p>
+</div>
+<p>→ Card states and lifecycle: <a class="reference internal" href="concepts.html"><span class="doc">Concepts</span></a> / <a class="reference internal" href="governance.html"><span class="doc">Custody Governance &amp; Checklists</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

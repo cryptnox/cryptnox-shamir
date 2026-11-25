@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security Model &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/security_model.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Command Reference" href="cli_reference.html" />
+    <link rel="prev" title="Printable Checklist" href="printable_checklist.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/security_model.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/security_model.html" />
+<meta property="og:title" content="Security Model | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="Security Model | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceremony.html">The Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Choosing Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printable_checklist.html">Printable Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Security Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-core-guarantee">The core guarantee</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-each-actor-can-see">What each actor can see</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-a-stolen-card-reveals">What a stolen card reveals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pin-protection">PIN protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#card-sets">Card sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#seed-wrapping-transport-to-the-hsm">Seed wrapping (transport to the HSM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#audit-the-export-counter">Audit: the export counter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assumptions-you-must-uphold">Assumptions you must uphold</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Security Model</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="security-model">
+<h1>Security Model<a class="headerlink" href="#security-model" title="Link to this heading"></a></h1>
+<p>This page is written for <strong>risk, security, and compliance teams</strong>. It
+describes what the system protects, what each actor can see, and the
+assumptions you must uphold for the guarantees to hold.</p>
+<section id="the-core-guarantee">
+<h2>The core guarantee<a class="headerlink" href="#the-core-guarantee" title="Link to this heading"></a></h2>
+<p>The secret is split with Shamir’s Secret Sharing into <code class="docutils literal notranslate"><span class="pre">n</span></code> shares with
+threshold <code class="docutils literal notranslate"><span class="pre">k</span></code>:</p>
+<ul class="simple">
+<li><p><strong>Any ``k`` shares</strong> reconstruct the secret exactly.</p></li>
+<li><p><strong>Any ``k - 1`` shares</strong> reveal <strong>nothing</strong> — this is information-theoretic,
+not merely “computationally hard”. Fewer than <code class="docutils literal notranslate"><span class="pre">k</span></code> shares are as useless as
+zero shares.</p></li>
+</ul>
+<p>On top of this, the hardware ensures the secret and the individual shares are
+<strong>never present in plaintext on the host PC</strong>.</p>
+</section>
+<section id="what-each-actor-can-see">
+<h2>What each actor can see<a class="headerlink" href="#what-each-actor-can-see" title="Link to this heading"></a></h2>
+<p><strong>The host PC</strong> (running <code class="docutils literal notranslate"><span class="pre">shamir-cli</span></code>) only ever handles:</p>
+<ul class="simple">
+<li><p>non-secret public values exchanged between the cards,</p></li>
+<li><p><strong>encrypted</strong> shares (unreadable outside the cards),</p></li>
+<li><p>the <strong>RSA-wrapped</strong> seed (readable only by the HSM’s private key).</p></li>
+</ul>
+<p>The host <strong>never</strong> sees the seed in plaintext, a share in plaintext, or any
+private key.</p>
+<p><strong>A single storage card</strong> holds exactly one <strong>encrypted</strong> share, behind a PIN.</p>
+<p><strong>The orchestrator card</strong> is the only place the seed exists in plaintext, and
+only transiently in volatile memory during a ceremony or recovery. It is
+erased on reset and after export.</p>
+</section>
+<section id="what-a-stolen-card-reveals">
+<h2>What a stolen card reveals<a class="headerlink" href="#what-a-stolen-card-reveals" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 34.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attacker has…</p></th>
+<th class="head"><p>…and learns</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>One storage card — back markings</p></td>
+<td><p>The bundle ID and a <strong>share number</strong> only. The total <code class="docutils literal notranslate"><span class="pre">n</span></code> and threshold
+<code class="docutils literal notranslate"><span class="pre">k</span></code> are <strong>not</strong> on the card (custody log only), so a found card does
+not reveal the scheme.</p></td>
+</tr>
+<tr class="row-odd"><td><p>One storage card, no PIN</p></td>
+<td><p>Nothing. The share is encrypted and PIN-gated.</p></td>
+</tr>
+<tr class="row-even"><td><p>One storage card, with PIN</p></td>
+<td><p>One share — <strong>useless alone</strong>. <code class="docutils literal notranslate"><span class="pre">k</span></code> cards are still required.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">-</span> <span class="pre">1</span></code> storage cards, all PINs</p></td>
+<td><p><strong>Nothing about the secret</strong> (Shamir guarantee).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">k</span></code> storage cards, all PINs</p></td>
+<td><p>The secret. This is the quorum you defined — protect at least
+<code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">-</span> <span class="pre">k</span> <span class="pre">+</span> <span class="pre">1</span></code> cards from any single adversary.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Choose <code class="docutils literal notranslate"><span class="pre">k</span></code> so that no single individual, site, or failure can assemble
+<code class="docutils literal notranslate"><span class="pre">k</span></code> cards. Distribute the cards across <strong>independent</strong> custodians and
+locations.</p>
+</div>
+</section>
+<section id="pin-protection">
+<h2>PIN protection<a class="headerlink" href="#pin-protection" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Each storage card is protected by a <strong>4-character PIN</strong>.</p></li>
+<li><p><strong>Three</strong> consecutive wrong PINs <strong>lock</strong> the card.</p></li>
+<li><p>Change a card’s PIN with <code class="docutils literal notranslate"><span class="pre">shamir-cli</span> <span class="pre">storage</span> <span class="pre">change-pin</span></code>.</p></li>
+<li><p>The factory default PIN is <code class="docutils literal notranslate"><span class="pre">0000</span></code> — <strong>change it</strong> before going to
+production.</p></li>
+</ul>
+</section>
+<section id="card-sets">
+<h2>Card sets<a class="headerlink" href="#card-sets" title="Link to this heading"></a></h2>
+<p>The orchestrator and its storage cards form a <strong>matched set</strong>: an orchestrator
+only works with storage cards that belong to the same set, and rejects any
+card from outside it. This prevents an attacker from slipping a rogue storage
+card into a ceremony or recovery.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In production, the cards you receive are already provisioned as a set — you
+do not configure this. Simply use the cards that were delivered together.</p>
+</div>
+</section>
+<section id="seed-wrapping-transport-to-the-hsm">
+<h2>Seed wrapping (transport to the HSM)<a class="headerlink" href="#seed-wrapping-transport-to-the-hsm" title="Link to this heading"></a></h2>
+<p>When the orchestrator outputs the seed it always encrypts it with the HSM’s
+<strong>RSA public key</strong>. Only the HSM holding the matching private key can open the
+resulting <code class="docutils literal notranslate"><span class="pre">wrapped_seed.bin</span></code>. Provide that key with <code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you omit <code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span></code>, the tool generates a <strong>throwaway</strong> key for
+convenience during evaluation, and the wrapped file cannot be opened once
+the process exits. <strong>Never</strong> do this with a real secret — always supply
+your HSM’s public key in production.</p>
+</div>
+</section>
+<section id="audit-the-export-counter">
+<h2>Audit: the export counter<a class="headerlink" href="#audit-the-export-counter" title="Link to this heading"></a></h2>
+<p>Every real share read during a recovery increments a non-volatile <strong>counter</strong>
+inside the storage card. Inspect it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>storage<span class="w"> </span>read-counter
+</pre></div>
+</div>
+<p>A counter higher than your records expect means a share was read outside a
+sanctioned recovery — investigate. (The <a class="reference internal" href="backup_test.html"><span class="doc">Backup Test</span></a> does <strong>not</strong>
+increment this counter, so routine checks do not pollute the audit trail.)</p>
+</section>
+<section id="assumptions-you-must-uphold">
+<h2>Assumptions you must uphold<a class="headerlink" href="#assumptions-you-must-uphold" title="Link to this heading"></a></h2>
+<p>For the guarantees above to hold:</p>
+<ol class="arabic simple">
+<li><p>The <strong>ceremony host is trusted</strong> and offline at ceremony time.</p></li>
+<li><p><strong>Cards and PINs are distributed</strong> so no single adversary can gather <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p></li>
+<li><p>The <strong>HSM RSA public key</strong> used for wrapping is authentic (verify its
+fingerprint out-of-band).</p></li>
+<li><p>The <strong>physical card labels</strong> (share indices) are recorded and protected —
+recovery relies on inserting cards in share-index order
+(<a class="reference internal" href="ceremony.html#ceremony-labelling"><span class="std std-ref">Card order (share numbers)</span></a>).</p></li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="concepts.html"><span class="doc">Concepts</span></a> — the HSM and wrapped seed in plain terms.</p></li>
+<li><p><a class="reference internal" href="parameters.html"><span class="doc">Choosing Parameters</span></a> — translating policy into <code class="docutils literal notranslate"><span class="pre">k</span></code> and <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></li>
+<li><p><a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a> — the operational controls in practice.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

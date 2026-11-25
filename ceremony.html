@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Ceremony &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/ceremony.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Recovery" href="recovery.html" />
+    <link rel="prev" title="Cheat sheet" href="cheatsheet.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/ceremony.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/ceremony.html" />
+<meta property="og:title" content="The Ceremony | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="The Ceremony | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheat sheet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The Ceremony</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#before-you-begin">Before you begin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-the-ceremony">Running the ceremony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#where-the-seed-goes-the-hsm">Where the seed goes (the HSM)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-it-works">How it works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#card-order-share-numbers">Card order (share numbers)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#after-the-ceremony">After the ceremony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resetting-a-card-before-a-ceremony">Resetting a card before a ceremony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#importing-an-existing-seed">Importing an existing seed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Choosing Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printable_checklist.html">Printable Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="security_model.html">Security Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">Command Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The Ceremony</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-ceremony">
+<h1>The Ceremony<a class="headerlink" href="#the-ceremony" title="Link to this heading"></a></h1>
+<p>The <strong>ceremony</strong> is the one-time event in which you generate a master secret,
+split it into shares, and write each share to a storage card. It is the most
+important procedure in the system and should be performed deliberately, under
+controlled conditions.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Generate vs import.</strong> In <code class="docutils literal notranslate"><span class="pre">full-ceremony</span></code> (this page) the seed is
+<strong>generated on the orchestrator</strong> — you never enter it, and it never exists
+off the card. This is the most secure option and the recommended default.
+To back up a key that <strong>already exists</strong> (for example a treasury key you
+hold elsewhere), use the <strong>import ceremony</strong> instead — see
+<a class="reference internal" href="#ceremony-importing-an-existing-seed"><span class="std std-ref">Importing an existing seed</span></a>.</p>
+</div>
+<p>Throughout this page we use a <strong>2-of-3</strong> ceremony (three cards, any two
+recover) with a 256-bit seed <strong>purely as a worked example</strong>. It is not a fixed
+or recommended value — substitute your own <code class="docutils literal notranslate"><span class="pre">-n</span></code>, <code class="docutils literal notranslate"><span class="pre">-k</span></code> and <code class="docutils literal notranslate"><span class="pre">-s</span></code> for any
+supported configuration (<a class="reference internal" href="parameters.html"><span class="doc">Choosing Parameters</span></a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>2-of-3 is just an example.</strong> The system supports <code class="docutils literal notranslate"><span class="pre">n</span></code> from 2 to 12 and
+<code class="docutils literal notranslate"><span class="pre">k</span></code> from 2 to 7. Choose the quorum that matches your custody policy.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>The provisioned count is a ceiling, not a quota.</strong> A set ships with a fixed
+number of storage cards — that is the <strong>maximum</strong> <code class="docutils literal notranslate"><span class="pre">n</span></code>. At the ceremony you
+choose <strong>any</strong> valid <code class="docutils literal notranslate"><span class="pre">k</span></code>-of-<code class="docutils literal notranslate"><span class="pre">n</span></code> with <code class="docutils literal notranslate"><span class="pre">n</span></code> ≤ the cards you hold: you may
+use fewer and leave the spares unused. You only cannot set <code class="docutils literal notranslate"><span class="pre">n</span></code> <em>higher</em> than
+the number of cards. The k-of-n is <strong>not</strong> marked at the factory — you write
+it on the cards (see <a class="reference internal" href="#ceremony-labelling"><span class="std std-ref">Card order (share numbers)</span></a>), so you are free to decide it
+right up to the ceremony.</p>
+</div>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/ceremony_flow.svg"><img alt="Ceremony steps: generate, split, load shares, backup test, wrap to HSM" src="_images/ceremony_flow.svg" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">The ceremony at a glance — the seed is generated and split on the
+orchestrator, distributed to the storage cards, verified by a backup test,
+then exported RSA-wrapped to the HSM.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="before-you-begin">
+<h2>Before you begin<a class="headerlink" href="#before-you-begin" title="Link to this heading"></a></h2>
+<p>Prepare:</p>
+<ul class="simple">
+<li><p><strong>1 orchestrator card</strong> in state <code class="docutils literal notranslate"><span class="pre">0x00</span></code> (reset if needed — see below).</p></li>
+<li><p><strong>``n`` storage cards</strong> from the same set, in state <code class="docutils literal notranslate"><span class="pre">0x00</span></code> (3 for this
+example).</p></li>
+<li><p>The <strong>RSA public key of your HSM</strong>, exported to a file (e.g.
+<code class="docutils literal notranslate"><span class="pre">hsm_pubkey.pem</span></code>). This is the key the seed will be wrapped for.</p></li>
+<li><p>The <strong>factory blessing bundle</strong> for this set (<code class="docutils literal notranslate"><span class="pre">*.bundle.json</span></code>). It lets
+the orchestrator accept the storage cards of this set. It is produced when the cards are
+enrolled at the factory. Only <code class="docutils literal notranslate"><span class="pre">--test-mode</span></code> runs without one.</p></li>
+</ul>
+<div class="important admonition">
+<p class="admonition-title">Production checklist</p>
+<ul class="simple">
+<li><p>Perform the ceremony on a <strong>trusted, offline machine</strong> in a controlled
+location, ideally with multiple officers present (four-eyes principle).</p></li>
+<li><p>Use your real <strong>HSM RSA public key</strong> via <code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span></code>. Without it,
+the tool generates a throwaway test key and the resulting wrapped seed
+is <strong>not usable</strong> in production.</p></li>
+<li><p><strong>Write each card’s share number as you load it</strong> (#1, #2, #3 …) and keep
+the cards in that order. The card cannot report its own share index, so
+recovery relies on what you write on the back. See <a class="reference internal" href="#ceremony-labelling"><span class="std std-ref">Card order (share numbers)</span></a>.</p></li>
+</ul>
+</div>
+</section>
+<section id="running-the-ceremony">
+<h2>Running the ceremony<a class="headerlink" href="#running-the-ceremony" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>workflow<span class="w"> </span>full-ceremony<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-k<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-s<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-t<span class="w"> </span>f<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--blessings-bundle<span class="w"> </span>./batch.bundle.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--rsa-key-file<span class="w"> </span>hsm_pubkey.pem<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--output-dir<span class="w"> </span>./ceremony-output
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">--blessings-bundle</span></code> may be <strong>omitted</strong> only if exactly one
+<code class="docutils literal notranslate"><span class="pre">*.bundle.json</span></code> sits in the working directory — it is then auto-discovered.
+A real ceremony always consumes one; only <code class="docutils literal notranslate"><span class="pre">--test-mode</span></code> runs without a
+bundle.</p>
+</div>
+<p>Options:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 76.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-n,</span> <span class="pre">--total</span></code></p></td>
+<td><p>Total number of storage cards / shares (2–12).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-k,</span> <span class="pre">--threshold</span></code></p></td>
+<td><p>Minimum cards required to recover (2–7, <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">≤</span> <span class="pre">n</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-s,</span> <span class="pre">--seed-size</span></code></p></td>
+<td><p>Seed size in bytes: <code class="docutils literal notranslate"><span class="pre">16</span> <span class="pre">|</span> <span class="pre">32</span> <span class="pre">|</span> <span class="pre">48</span> <span class="pre">|</span> <span class="pre">64</span> <span class="pre">|</span> <span class="pre">66</span> <span class="pre">|</span> <span class="pre">128</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-t,</span> <span class="pre">--seed-type</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f</span></code> random · <code class="docutils literal notranslate"><span class="pre">r</span></code> EC r1 key · <code class="docutils literal notranslate"><span class="pre">k</span></code> secp256k1 key.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--blessings-bundle</span></code></p></td>
+<td><p>Factory blessing bundle for this card set (<code class="docutils literal notranslate"><span class="pre">*.bundle.json</span></code>).
+Auto-discovered in the working dir if omitted.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--wallet-hsm</span></code></p></td>
+<td><p>Use a Cryptnox wallet on this reader as the HSM: the seed is imported
+straight into it, nothing on disk. The wallet must be initialised and
+hold no seed (<code class="docutils literal notranslate"><span class="pre">NO_SEED</span></code>). See <a class="reference internal" href="#ceremony-hsm"><span class="std std-ref">Where the seed goes (the HSM)</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--wallet-pin</span></code></p></td>
+<td><p>PIN of the wallet used with <code class="docutils literal notranslate"><span class="pre">--wallet-hsm</span></code> (default <code class="docutils literal notranslate"><span class="pre">0000</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span></code></p></td>
+<td><p>HSM RSA public key (PEM/DER) used to wrap the seed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--kms-key-id</span></code></p></td>
+<td><p>AWS KMS asymmetric RSA key used to wrap the seed. Pass the <strong>full ARN</strong>
+of an existing key. See <a class="reference internal" href="#ceremony-hsm"><span class="std std-ref">Where the seed goes (the HSM)</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--kms-region</span></code></p></td>
+<td><p>AWS region for <code class="docutils literal notranslate"><span class="pre">--kms-key-id</span></code> (default <code class="docutils literal notranslate"><span class="pre">eu-north-1</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--output-dir</span></code></p></td>
+<td><p>Where to write the wrapped seed file.</p></td>
+</tr>
+</tbody>
+</table>
+<p>With a single reader, the tool prompts you to insert and swap cards:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Insert Orchestrator card and press Enter...
+Insert Storage card #1 and press Enter...
+Swap back to Orchestrator card and press Enter...
+Insert Storage card #2 and press Enter...
+...
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>With <strong>two readers</strong> you can keep the orchestrator in one and only change
+the storage card in the other, which reduces card swaps considerably.</p>
+</div>
+</section>
+<section id="where-the-seed-goes-the-hsm">
+<span id="ceremony-hsm"></span><h2>Where the seed goes (the HSM)<a class="headerlink" href="#where-the-seed-goes-the-hsm" title="Link to this heading"></a></h2>
+<p>The generated seed never touches the disk in the clear — it is RSA-wrapped
+inside the orchestrator and handed to <strong>exactly one</strong> recipient (the “HSM”).
+Choose one of:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22.0%" />
+<col style="width: 78.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Recipient</p></th>
+<th class="head"><p>How</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Cryptnox wallet</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--wallet-hsm</span> <span class="pre">&lt;reader&gt;</span></code> (+ <code class="docutils literal notranslate"><span class="pre">--wallet-pin</span></code>). The seed is imported
+straight into the wallet on-card; nothing is written to disk. The wallet
+must be initialised and <code class="docutils literal notranslate"><span class="pre">NO_SEED</span></code>. Both wallet generations are
+accepted (the SDK reports either <code class="docutils literal notranslate"><span class="pre">Basic</span></code> or <code class="docutils literal notranslate"><span class="pre">BasicG1</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>AWS KMS</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--kms-key-id</span> <span class="pre">&lt;arn&gt;</span></code> (+ <code class="docutils literal notranslate"><span class="pre">--kms-region</span></code>). The seed is wrapped to an
+AWS KMS asymmetric RSA key; KMS holds the private half and can decrypt
+it later. The wrapped blob is written to <code class="docutils literal notranslate"><span class="pre">--output-dir</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>External RSA HSM</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span> <span class="pre">&lt;pem&gt;</span></code>. The seed is wrapped to that public key and
+written to <code class="docutils literal notranslate"><span class="pre">--output-dir</span></code> as <code class="docutils literal notranslate"><span class="pre">wrapped_seed.bin</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="aws-kms-credentials-and-key">
+<span id="ceremony-kms"></span><h3>AWS KMS — credentials and key<a class="headerlink" href="#aws-kms-credentials-and-key" title="Link to this heading"></a></h3>
+<p>The KMS recipient talks to AWS through <strong>boto3</strong>. No secret is stored in this
+tool; credentials come from the standard AWS chain:</p>
+<ol class="arabic simple">
+<li><p>Environment variables — <code class="docutils literal notranslate"><span class="pre">AWS_ACCESS_KEY_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS_SECRET_ACCESS_KEY</span></code>,
+<code class="docutils literal notranslate"><span class="pre">AWS_DEFAULT_REGION</span></code>; or</p></li>
+<li><p>a shared profile written by <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">configure</span></code> (<code class="docutils literal notranslate"><span class="pre">~/.aws/credentials</span></code> +
+<code class="docutils literal notranslate"><span class="pre">~/.aws/config</span></code>); or</p></li>
+<li><p>an IAM role (when running on an EC2 instance / container).</p></li>
+</ol>
+<p>Create an access key in the AWS console under
+<strong>IAM → Users → &lt;user&gt; → Security credentials → Access keys → Create access
+key</strong> (use case <em>Command Line Interface</em>). The <strong>Secret Access Key is shown only
+once</strong> — save it. Then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aws</span> <span class="n">configure</span>          <span class="c1"># Access Key ID + Secret + region (e.g. eu-north-1)</span>
+<span class="n">aws</span> <span class="n">sts</span> <span class="n">get</span><span class="o">-</span><span class="n">caller</span><span class="o">-</span><span class="n">identity</span>   <span class="c1"># verify: prints your ARN, not an error</span>
+</pre></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Pass the <strong>full key ARN</strong> to <code class="docutils literal notranslate"><span class="pre">--kms-key-id</span></code>, e.g.
+<code class="docutils literal notranslate"><span class="pre">arn:aws:kms:eu-north-1:&lt;account&gt;:key/&lt;key-id&gt;</span></code>. A <strong>bare key-id</strong> (just the
+UUID) is interpreted as an <em>alias name</em> and the tool will try to <strong>create</strong> a
+key — which fails with <code class="docutils literal notranslate"><span class="pre">AccessDeniedException</span></code> on <code class="docutils literal notranslate"><span class="pre">kms:CreateKey</span></code> unless
+you hold that permission. An <code class="docutils literal notranslate"><span class="pre">alias/&lt;name&gt;</span></code> is also accepted and is created
+on first use (needs <code class="docutils literal notranslate"><span class="pre">kms:CreateKey</span></code> + <code class="docutils literal notranslate"><span class="pre">kms:CreateAlias</span></code>).</p>
+<p>The key must be an <strong>asymmetric RSA</strong> key with usage <em>ENCRYPT_DECRYPT</em>
+(RSA-2048 or larger). Minimum permissions to use an existing key:
+<code class="docutils literal notranslate"><span class="pre">kms:GetPublicKey</span></code> (to wrap) and <code class="docutils literal notranslate"><span class="pre">kms:Decrypt</span></code> (to recover / verify).</p>
+</div>
+<p>On success the ceremony wraps the seed to KMS, writes
+<code class="docutils literal notranslate"><span class="pre">kms_wrapped_seed.bin</span></code>, and re-decrypts it through KMS to confirm the
+checksum matches the on-card seed (<code class="docutils literal notranslate"><span class="pre">KMS</span> <span class="pre">decrypt</span> <span class="pre">check:</span> <span class="pre">checksum</span> <span class="pre">match</span> <span class="pre">=</span>
+<span class="pre">True</span></code>).</p>
+</section>
+</section>
+<section id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Reset the orchestrator</strong> to a clean state and enter Ceremony mode.</p></li>
+<li><p><strong>Register each storage card.</strong> Each card and the orchestrator
+authenticate one another, and the orchestrator records the card.</p></li>
+<li><p><strong>Load the HSM RSA wrapping key.</strong></p></li>
+<li><p><strong>Generate the seed</strong> inside the orchestrator. It returns a <em>checksum</em>
+(a short fingerprint) — <strong>write it down</strong>.</p></li>
+<li><p><strong>Export each share</strong>, encrypted for its specific storage card, and load
+it into that card.</p></li>
+<li><p><strong>Backup test.</strong> The orchestrator reads the shares back and confirms they
+reconstruct the original seed. (All <code class="docutils literal notranslate"><span class="pre">n</span></code> shares are exercised.)</p></li>
+<li><p><strong>Export the RSA-wrapped seed</strong> to <code class="docutils literal notranslate"><span class="pre">ceremony-output/wrapped_seed.bin</span></code>.</p></li>
+</ol>
+<p>A successful run ends with a summary panel:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>╭──────────────────────── Summary ─────────────────────────╮
+│ Ceremony Complete                                        │
+│   Shares: 3 total, 2 required                            │
+│   Seed: 256-bit, type=f                                  │
+│   Seed checksum: 33 F4 A2 59 31 57 9D 19                 │
+│   Wrapped seed: wrapped_seed.bin                         │
+╰──────────────────────────────────────────────────────────╯
+</pre></div>
+</div>
+</section>
+<section id="card-order-share-numbers">
+<span id="ceremony-labelling"></span><h2>Card order (share numbers)<a class="headerlink" href="#card-order-share-numbers" title="Link to this heading"></a></h2>
+<p>The card backs are a <strong>printed form</strong> — the factory does not mark the k-of-n.
+As you run the ceremony, <strong>you write</strong> on each storage card’s back:</p>
+<ul class="simple">
+<li><p>the <strong>bundle name</strong> (the set identifier),</p></li>
+<li><p>this card’s <strong>share number</strong> — card #1 first, #2 second, and so on, written as
+you load it, so each label matches the share it actually stores.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Keep the total and threshold off the cards.</strong> Write only the share number;
+record the full <code class="docutils literal notranslate"><span class="pre">k</span></code>-of-<code class="docutils literal notranslate"><span class="pre">n</span></code> in your <strong>custody log</strong>. A single lost or
+stolen card should not reveal how many cards exist or how many are needed.</p>
+<p>The card does not report its share number electronically, so recovery relies
+on the number <strong>you wrote</strong>: at recovery, insert the cards in the same order.
+Inserting them out of order reconstructs the <strong>wrong</strong> secret (the checksum
+will not match). Write legibly and double-check.</p>
+</div>
+<section id="annotate-the-back-of-each-card">
+<h3>Annotate the back of each card<a class="headerlink" href="#annotate-the-back-of-each-card" title="Link to this heading"></a></h3>
+<p>The back of each card is a printed form with empty fields. In addition to the
+set parameters above, fill in a short, <strong>non-identifying</strong> custody marker in the
+<strong>Notes</strong> area (see <a class="reference internal" href="hardware.html#hardware-card-backs"><span class="std std-ref">Card markings</span></a>):</p>
+<ul class="simple">
+<li><p><strong>Orchestrator card</strong> — the <strong>Bundle</strong> name, the <strong>administrator’s operator
+code</strong>, and the <strong>ceremony date</strong>.</p></li>
+<li><p><strong>Each storage card</strong> — the <strong>custodian code</strong> (assigned by the
+administrator; the scheme is up to your organisation, e.g. <code class="docutils literal notranslate"><span class="pre">C-03</span></code>) and the
+<strong>ceremony date</strong>.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Keep the cards <strong>anonymous</strong>: put <strong>no full name and no handwritten
+signature on the card</strong> — both identify a person and make them a target for
+<strong>coercion</strong>. The acknowledgement of receipt (the holder’s signature
+against their code) and the <strong>code → name</strong> mapping live <strong>only in your
+custody log</strong>, stored securely.</p>
+</div>
+<p>This keeps each card’s role readable at a glance while keeping the people
+involved un-targetable from the card alone; accountability lives in the log.</p>
+</section>
+</section>
+<section id="after-the-ceremony">
+<h2>After the ceremony<a class="headerlink" href="#after-the-ceremony" title="Link to this heading"></a></h2>
+<p>You now hold:</p>
+<ul class="simple">
+<li><p><strong>``n`` storage cards</strong>, each in state <code class="docutils literal notranslate"><span class="pre">0x02</span></code> (loaded) and labelled.
+Store them in <strong>separate, secure locations</strong> (different safes / sites).</p></li>
+<li><p><strong>One</strong> <code class="docutils literal notranslate"><span class="pre">wrapped_seed.bin</span></code> <strong>file</strong> — import it into your HSM using your
+standard RSA key-import procedure. After import, <strong>destroy the file</strong>; it
+is only an encrypted transport artifact.</p></li>
+<li><p><strong>One orchestrator card</strong>, reset and reusable.</p></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before sealing each card in its safe, you can spot-check it on its own with
+<code class="docutils literal notranslate"><span class="pre">shamir-cli</span> <span class="pre">storage</span> <span class="pre">pedersen-verify</span></code> — it confirms that one card holds a
+valid share for this set, without needing the others. See
+<a class="reference internal" href="backup_test.html#single-card-verify"><span class="std std-ref">Checking a single card</span></a>.</p>
+</div>
+<p>Record, in your custody log: the <strong>seed checksum</strong>, the <code class="docutils literal notranslate"><span class="pre">k</span></code> / <code class="docutils literal notranslate"><span class="pre">n</span></code>
+parameters, the seed size/type, and the physical location assigned to each
+labelled card.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The seed is <strong>never</strong> exported in plaintext. The orchestrator destroys its
+in-memory copy on reset and after export. The only way to recover the seed
+later is the wrapped seed (via the HSM private key) <strong>or</strong> a
+<a class="reference internal" href="recovery.html"><span class="doc">Recovery</span></a> from <code class="docutils literal notranslate"><span class="pre">k</span></code> storage cards.</p>
+</div>
+</section>
+<section id="resetting-a-card-before-a-ceremony">
+<h2>Resetting a card before a ceremony<a class="headerlink" href="#resetting-a-card-before-a-ceremony" title="Link to this heading"></a></h2>
+<p>If a card is not in state <code class="docutils literal notranslate"><span class="pre">0x00</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Orchestrator</span>
+shamir-cli<span class="w"> </span>orchestrator<span class="w"> </span>reset
+
+<span class="c1"># Storage (PIN required)</span>
+shamir-cli<span class="w"> </span>storage<span class="w"> </span>reset<span class="w"> </span>--pin<span class="w"> </span><span class="m">0000</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="troubleshooting.html"><span class="doc">Troubleshooting</span></a> if a reset is refused.</p>
+</section>
+<section id="importing-an-existing-seed">
+<span id="ceremony-importing-an-existing-seed"></span><h2>Importing an existing seed<a class="headerlink" href="#importing-an-existing-seed" title="Link to this heading"></a></h2>
+<p>Use <strong>import</strong> when the secret you want to protect <strong>already exists</strong> (for
+example a treasury key generated elsewhere) — rather than letting the
+orchestrator generate a fresh one. It is the very same <code class="docutils literal notranslate"><span class="pre">full-ceremony</span></code> command
+with one extra flag: <code class="docutils literal notranslate"><span class="pre">--secret-file</span></code> (or <code class="docutils literal notranslate"><span class="pre">--secret</span></code>).</p>
+<p>You <strong>must</strong> supply the secret to import, either as a file (recommended) or as a
+hex string:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>workflow<span class="w"> </span>full-ceremony<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-k<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-s<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--orch-reader<span class="w"> </span><span class="s2">"&lt;orchestrator reader&gt;"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--storage-readers<span class="w"> </span><span class="s2">"&lt;reader1&gt;,&lt;reader2&gt;,&lt;reader3&gt;"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--blessings-bundle<span class="w"> </span>./cards.bundle.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--secret-file<span class="w"> </span>./treasury.hex
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--secret-file</span> <span class="pre">&lt;file&gt;</span></code> — a file holding the secret. It may be <strong>hex text</strong>
+(e.g. <code class="docutils literal notranslate"><span class="pre">00112233…</span></code>) or <strong>raw bytes</strong>; either way its length must equal <code class="docutils literal notranslate"><span class="pre">-s</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--secret</span> <span class="pre">&lt;hex&gt;</span></code> — the secret inline as hex. Prefer <code class="docutils literal notranslate"><span class="pre">--secret-file</span></code> so the
+secret never lands in your shell history.</p></li>
+</ul>
+<p>Everything else is identical to a normal ceremony — the same real cards, the same
+factory bundle, the same on-card VSS split and per-card verification — <strong>except</strong>:</p>
+<ul class="simple">
+<li><p>the seed is <strong>imported</strong> (RSA-encrypted to the orchestrator) instead of
+generated on-card; and</p></li>
+<li><p>it is <strong>not</strong> re-wrapped to an HSM (you already hold it), so the HSM options
+(<code class="docutils literal notranslate"><span class="pre">--wallet-hsm</span></code> / <code class="docutils literal notranslate"><span class="pre">--rsa-key-file</span></code> / <code class="docutils literal notranslate"><span class="pre">--kms-key-id</span></code>) do not apply.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">workflow</span> <span class="pre">ceremony-import</span></code> is a separate, <strong>software-only</strong> command (virtual
+storage cards, throwaway test material) kept for simulator demos. For real
+enrolled cards, use <code class="docutils literal notranslate"><span class="pre">full-ceremony</span> <span class="pre">--secret-file</span></code> as above.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The secret is <strong>required</strong>. <code class="docutils literal notranslate"><span class="pre">ceremony-import</span></code> exists precisely to protect a
+key you already hold — it never invents a random one. If you want a fresh
+random seed, use <code class="docutils literal notranslate"><span class="pre">full-ceremony</span></code> instead: it generates it <strong>on-card</strong> with
+the smart card’s hardware TRNG, which is stronger than any host-side generator.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The secret is imported in <strong>encrypted</strong> form (wrapped to the orchestrator’s
+RSA key); it is never sent to the card in the clear, and the orchestrator
+never exposes it. The secret is not printed to the console — only its length
+and the resulting checksum are shown.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="parameters.html"><span class="doc">Choosing Parameters</span></a> — choosing <code class="docutils literal notranslate"><span class="pre">n</span></code>, <code class="docutils literal notranslate"><span class="pre">k</span></code>, seed size and type.</p></li>
+<li><p><a class="reference internal" href="backup_test.html"><span class="doc">Backup Test</span></a> — confirm the backup is healthy afterwards.</p></li>
+<li><p><a class="reference internal" href="recovery.html"><span class="doc">Recovery</span></a> — restore the seed from <code class="docutils literal notranslate"><span class="pre">k</span></code> cards.</p></li>
+<li><p><a class="reference internal" href="security_model.html"><span class="doc">Security Model</span></a> — what a stolen card reveals, PINs, audit.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

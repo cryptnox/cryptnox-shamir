@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troubleshooting &mdash; Cryptnox Shamir</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/custom.css?v=d0f558b8" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.png"/>
+    <link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/troubleshooting.html" />
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=2882ecd3"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="license.html" />
+    <link rel="prev" title="Command Reference" href="cli_reference.html" />
+ 
+
+
+
+
+
+
+<meta name="description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+
+<link rel="canonical" href="https://docs.cryptnox.com/cryptnox-shamir/troubleshooting.html" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://docs.cryptnox.com/cryptnox-shamir/troubleshooting.html" />
+<meta property="og:title" content="Troubleshooting | Cryptnox Docs" />
+<meta property="og:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta property="og:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+<meta property="og:site_name" content="Cryptnox Docs" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@CryptnoxTech" />
+<meta name="twitter:title" content="Troubleshooting | Cryptnox Docs" />
+<meta name="twitter:description" content="Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum." />
+<meta name="twitter:image" content="https://cryptnox.com/wp-content/uploads/2026/09/cryptnox-documentation-social.jpg" />
+<meta name="twitter:image:alt" content="Cryptnox Documentation — official Cryptnox technical documentation" />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://cryptnox.com/#organization",
+      "name": "Cryptnox SA",
+      "url": "https://cryptnox.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://docs.cryptnox.com/#logo",
+        "url": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "contentUrl": "https://docs.cryptnox.com/_static/cryptnox-logo.svg",
+        "caption": "Cryptnox"
+      },
+      "sameAs": [
+        "https://shop.cryptnox.com/",
+        "https://github.com/cryptnox"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://docs.cryptnox.com/#website",
+      "url": "https://docs.cryptnox.com",
+      "name": "Cryptnox Docs",
+      "alternateName": "Cryptnox",
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://docs.cryptnox.com/cryptnox-shamir/#webpage",
+      "url": "https://docs.cryptnox.com/cryptnox-shamir/",
+      "name": "Cryptnox Shamir",
+      "description": "Operating documentation for the Cryptnox Shamir card system: split a master secret across smart cards with Shamir Secret Sharing, run the key ceremony, test backups and recover with a k-of-n quorum.",
+      "isPartOf": { "@id": "https://docs.cryptnox.com/#website" },
+      "publisher": { "@id": "https://cryptnox.com/#organization" },
+      "inLanguage": "en-US",
+      "keywords": "Cryptnox, Shamir Secret Sharing, k-of-n, smart card, key ceremony, institutional custody, HSM backup, disaster recovery, documentation"
+    }
+  ]
+}
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GT-PJ7HDFB');</script>
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #101f2e" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Cryptnox Shamir
+              <img src="_static/cryptnox-logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Cards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Operating procedures</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cheatsheet.html">Cheat sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ceremony.html">The Ceremony</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recovery.html">Recovery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="backup_test.html">Backup Test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">Choosing Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="governance.html">Custody Governance &amp; Checklists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="printable_checklist.html">Printable Checklist</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="security_model.html">Security Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_reference.html">Command Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#no-readers-found">No readers found</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#command-not-allowed-sw-6985">Command not allowed (<code class="docutils literal notranslate"><span class="pre">SW=6985</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wrong-data-crypto-error-sw-6a80">Wrong data / crypto error (<code class="docutils literal notranslate"><span class="pre">SW=6A80</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wrong-pin">Wrong PIN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resetting-a-stuck-card">Resetting a stuck card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cards-still-loaded-before-a-new-ceremony">Cards still “Loaded” before a new ceremony</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recovery-produced-the-wrong-secret">Recovery produced the wrong secret</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reconstruction-is-slow">Reconstruction is slow</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #101f2e" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Cryptnox Shamir</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Troubleshooting</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h1>
+<p>This page lists the situations you are most likely to hit and how to resolve
+them. Status words (<code class="docutils literal notranslate"><span class="pre">SW=...</span></code>) are the two-byte codes returned by the card.</p>
+<section id="no-readers-found">
+<h2>No readers found<a class="headerlink" href="#no-readers-found" title="Link to this heading"></a></h2>
+<p><em>“No smart card readers found.”</em></p>
+<ul class="simple">
+<li><p>Confirm the reader is connected: <code class="docutils literal notranslate"><span class="pre">shamir-cli</span> <span class="pre">reader</span> <span class="pre">list</span></code>.</p></li>
+<li><p>On Linux, ensure <code class="docutils literal notranslate"><span class="pre">pcscd</span></code> is running: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">status</span> <span class="pre">pcscd</span></code>.</p></li>
+<li><p>You may need permissions — run under <code class="docutils literal notranslate"><span class="pre">sudo</span></code> or add your user to the
+<code class="docutils literal notranslate"><span class="pre">pcscd</span></code> group.</p></li>
+<li><p>Remember: <strong>only contact readers</strong> work. NFC / contactless is rejected.</p></li>
+</ul>
+</section>
+<section id="command-not-allowed-sw-6985">
+<h2>Command not allowed (<code class="docutils literal notranslate"><span class="pre">SW=6985</span></code>)<a class="headerlink" href="#command-not-allowed-sw-6985" title="Link to this heading"></a></h2>
+<p>The card’s state machine refused the command in its current state.</p>
+<ul>
+<li><p>You issued a step out of order (e.g. exporting a share before the seed was
+generated).</p></li>
+<li><p>The simplest fix is to <strong>reset and start the workflow again</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>orchestrator<span class="w"> </span>reset
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The guided workflows (<a class="reference internal" href="ceremony.html"><span class="doc">The Ceremony</span></a>, <a class="reference internal" href="recovery.html"><span class="doc">Recovery</span></a>) drive the state
+machine for you. If you see <code class="docutils literal notranslate"><span class="pre">6985</span></code> while using them, the card was likely
+left in a partial state — reset it and re-run.</p>
+</div>
+</section>
+<section id="wrong-data-crypto-error-sw-6a80">
+<h2>Wrong data / crypto error (<code class="docutils literal notranslate"><span class="pre">SW=6A80</span></code>)<a class="headerlink" href="#wrong-data-crypto-error-sw-6a80" title="Link to this heading"></a></h2>
+<p>A cryptographic check failed. Common causes:</p>
+<ul class="simple">
+<li><p>The cards do <strong>not</strong> belong to the same set (a storage card from another
+set, or mixed with another orchestrator).</p></li>
+<li><p>The wrong <strong>RSA key</strong> was supplied for wrapping.</p></li>
+</ul>
+<p>Re-run the workflow from a clean reset, using cards from the same set.</p>
+</section>
+<section id="wrong-pin">
+<span id="troubleshooting-wrong-pin"></span><h2>Wrong PIN<a class="headerlink" href="#wrong-pin" title="Link to this heading"></a></h2>
+<p><em>``SW=63CX`` — “Wrong PIN, X tries remaining”.</em></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> is the number of attempts left before lockout.</p></li>
+<li><p>After <strong>three</strong> wrong attempts, the card locks.</p></li>
+<li><p>The factory default PIN is <code class="docutils literal notranslate"><span class="pre">0000</span></code>.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>A locked storage card cannot be read with its PIN. With an <strong>Admin card</strong>
+(PIN level C) you can reset it; otherwise the three-attempt budget is
+precious — keep PINs in your custody records. See <a class="reference internal" href="hardware.html#hardware-pin-levels"><span class="std std-ref">Storage card PIN — security levels</span></a>.</p>
+</div>
+</section>
+<section id="resetting-a-stuck-card">
+<h2>Resetting a stuck card<a class="headerlink" href="#resetting-a-stuck-card" title="Link to this heading"></a></h2>
+<p>If a card is left in a non-initial state (for example after an interrupted
+ceremony), simply reset it:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Orchestrator</span>
+shamir-cli<span class="w"> </span>orchestrator<span class="w"> </span>reset
+
+<span class="c1"># Storage (PIN required)</span>
+shamir-cli<span class="w"> </span>storage<span class="w"> </span>reset<span class="w"> </span>--pin<span class="w"> </span><span class="m">0000</span>
+</pre></div>
+</div>
+<p>If a storage card’s PIN is lost or locked (after three wrong attempts):</p>
+<ul class="simple">
+<li><p><strong>With an Admin card (PIN level C)</strong> — reset the card’s PIN with the Admin
+card and set a new one. The card and its share are recovered. This is the
+recommended setup (see <a class="reference internal" href="hardware.html#hardware-pin-levels"><span class="std std-ref">Storage card PIN — security levels</span></a>).</p></li>
+<li><p><strong>Without an Admin card (level A/B)</strong> — the card cannot be unlocked; it, and
+the share it holds, are lost. As long as you still have <code class="docutils literal notranslate"><span class="pre">k</span></code> working cards,
+recovery is unaffected; if you drop below <code class="docutils literal notranslate"><span class="pre">k</span></code>, the secret can no longer be
+reconstructed from the cards.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>orchestrator</strong> is different: it holds <strong>no secret</strong> at rest. If an
+orchestrator card is lost, damaged, or locked, it is not a security concern
+— request a replacement orchestrator card (matched to your card set) from
+Cryptnox at <a class="reference external" href="mailto:contact&#37;&#52;&#48;cryptnox&#46;com">contact<span>&#64;</span>cryptnox<span>&#46;</span>com</a>. Your storage cards and their shares are
+unaffected.</p>
+</div>
+</section>
+<section id="cards-still-loaded-before-a-new-ceremony">
+<h2>Cards still “Loaded” before a new ceremony<a class="headerlink" href="#cards-still-loaded-before-a-new-ceremony" title="Link to this heading"></a></h2>
+<p>If a storage card reports state <code class="docutils literal notranslate"><span class="pre">0x02</span></code> (Loaded), it still holds a share from
+a previous ceremony. Reset it first:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>shamir-cli<span class="w"> </span>storage<span class="w"> </span>reset<span class="w"> </span>--pin<span class="w"> </span><span class="m">0000</span>
+</pre></div>
+</div>
+</section>
+<section id="recovery-produced-the-wrong-secret">
+<h2>Recovery produced the wrong secret<a class="headerlink" href="#recovery-produced-the-wrong-secret" title="Link to this heading"></a></h2>
+<p>The recovery completed but the <code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">checksum</span></code> does <strong>not</strong> match the
+checksum recorded at the ceremony.</p>
+<ul class="simple">
+<li><p><strong>Cause:</strong> the cards were inserted in the wrong order, or cards from a
+different ceremony were mixed in. The system relies on inserting cards in
+<strong>share-index order</strong> (<a class="reference internal" href="ceremony.html#ceremony-labelling"><span class="std std-ref">Card order (share numbers)</span></a>).</p></li>
+<li><p><strong>Fix:</strong> do not import the result. Re-run, inserting the correctly labelled
+cards (#1 first, #2 second, …).</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Always verify the <code class="docutils literal notranslate"><span class="pre">Recovery</span> <span class="pre">checksum</span></code> against your ceremony record
+<strong>before</strong> importing a recovered seed into an HSM.</p>
+</div>
+</section>
+<section id="reconstruction-is-slow">
+<h2>Reconstruction is slow<a class="headerlink" href="#reconstruction-is-slow" title="Link to this heading"></a></h2>
+<p>On-card reconstruction performs modular inversions, which are expensive on a
+smart card. A large threshold on a large curve (for example <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">7</span></code> on
+P-521) can take on the order of a second. This is expected.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="recovery.html"><span class="doc">Recovery</span></a> — the correct recovery procedure.</p></li>
+<li><p><a class="reference internal" href="security_model.html"><span class="doc">Security Model</span></a> — PINs, lockout, and the audit counter.</p></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <hr/>
+<p style="margin-bottom: 0.25rem;">Last updated on 2026-11-25.</p>
+<p style="margin-bottom: 0.75rem;">&#169; Copyright 2026, Cryptnox SA.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ7HDFB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'GT-PJ7HDFB', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

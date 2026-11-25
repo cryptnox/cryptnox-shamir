@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 8 760 312" font-family="'Segoe UI', Tahoma, Verdana, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#101f2e"/>
+    </marker>
+    <marker id="as" markerWidth="9" markerHeight="9" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M7,0 L0,3 L7,6 Z" fill="#101f2e"/>
+    </marker>
+  </defs>
+
+  <!-- backbone: Provision -> Ceremony -> Operate -->
+  <g stroke="#101f2e" stroke-width="1.5">
+    <rect x="16"  y="26" width="132" height="50" rx="10" fill="#f4f6f8"/>
+    <rect x="180" y="26" width="132" height="50" rx="10" fill="#f4f6f8"/>
+    <rect x="344" y="22" width="170" height="58" rx="11" fill="#101f2e" stroke="#fcb770" stroke-width="2"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="82"  y="56" font-size="14" font-weight="bold" fill="#2c3e50">Provision</text>
+    <text x="246" y="56" font-size="14" font-weight="bold" fill="#2c3e50">Ceremony</text>
+    <text x="429" y="46" font-size="15" font-weight="bold" fill="#fcb770">Operate</text>
+    <text x="429" y="64" font-size="10" fill="#cdd6e0">secret in HSM · cards in safes</text>
+  </g>
+  <g stroke="#101f2e" stroke-width="2" marker-end="url(#a)">
+    <line x1="148" y1="51" x2="178" y2="51"/>
+    <line x1="312" y1="51" x2="342" y2="51"/>
+  </g>
+
+  <!-- recurring states (double-headed: enter and return to Operate) -->
+  <g stroke="#101f2e" stroke-width="1.5">
+    <rect x="10"  y="214" width="214" height="58" rx="10" fill="#f4f6f8"/>
+    <rect x="276" y="214" width="214" height="58" rx="10" fill="#f4f6f8"/>
+    <rect x="540" y="214" width="214" height="58" rx="10" fill="#f4f6f8"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="117" y="240" font-size="13" font-weight="bold" fill="#2c3e50">Verify backup</text>
+    <text x="117" y="258" font-size="10" fill="#7c8896">reconstruct · no export</text>
+    <text x="383" y="240" font-size="13" font-weight="bold" fill="#2c3e50">Reset PIN / reassign</text>
+    <text x="383" y="258" font-size="10" fill="#7c8896">Admin card</text>
+    <text x="647" y="240" font-size="13" font-weight="bold" fill="#2c3e50">Recover &#8594; new HSM</text>
+    <text x="647" y="258" font-size="10" fill="#7c8896">reconstruct + re-wrap</text>
+  </g>
+
+  <!-- transitions from/to Operate -->
+  <g stroke="#101f2e" stroke-width="1.6" fill="none" marker-end="url(#a)" marker-start="url(#as)">
+    <path d="M395,82 C320,140 200,150 130,212"/>
+    <path d="M420,84 L400,212"/>
+    <path d="M463,82 C560,140 620,150 655,212"/>
+  </g>
+  <g font-size="11" fill="#2c3e50" text-anchor="middle">
+    <text x="250" y="182">every year</text>
+    <text x="436" y="150" text-anchor="start">custodian change /</text>
+    <text x="436" y="164" text-anchor="start">lost card</text>
+    <text x="588" y="182">HSM lost</text>
+  </g>
+</svg>
