@@ -9,7 +9,7 @@ Cryptnox Shamir
 
 .. only:: html
 
-   `Download this documentation as a PDF <https://docs.cryptnox.com/cryptnox-shamir/cryptnox-shamir.pdf>`__
+   `Download this documentation as PDF <https://docs.cryptnox.com/cryptnox-shamir/cryptnox-shamir.pdf>`__
 
    *Cryptnox Shamir* splits a single master secret — a Bitcoin treasury key, an HSM
    wrapping key, a recovery seed — across ``n`` tamper-resistant smart cards, of which

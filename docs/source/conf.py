@@ -107,13 +107,15 @@ html_copy_source = False
 html_show_sphinx = False
 
 # -- Options for PDF (LaTeX) output ------------------------------------------
-# Built by CI with pdflatex; same cover and page layout as the other Cryptnox
-# manuals. Output: cryptnox-shamir.pdf
+# Built by CI with pdflatex; same cover and page layout as the
+# cryptnox-hardware-wallet manual. Output: cryptnox-shamir.pdf
 
 latex_engine = 'pdflatex'
 latex_logo = '_static/cryptnox-logo-dark.png'  # generated above; the white logo is invisible on the white cover
+latex_domain_indices = False  # no module index in the PDF (kept in HTML)
 latex_documents = [
-    ('index', 'cryptnox-shamir.tex', 'Cryptnox Shamir Manual', author, 'manual'),
+    ('index', 'cryptnox-shamir.tex',
+     'Cryptnox Shamir — Operating Manual', author, 'manual'),
 ]
 latex_elements = {
     'papersize': 'a4paper',
@@ -136,27 +138,29 @@ latex_elements = {
 \DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
 \DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
 \DeclareUnicodeCharacter{200B}{}
-% Literals (\ttfamily) in Inconsolata
-\usepackage{inconsolata}
 % Left-align body text (ragged right instead of justified)
 \usepackage[document]{ragged2e}
 % Drop the "(continues on next page)" / "(continued from previous page)" labels on code blocks
 \AtBeginDocument{\renewcommand*\sphinxstylecodecontinued[1]{}\renewcommand*\sphinxstylecodecontinues[1]{}}
 % Whole document in the sans font (TeX Gyre Heros)
 \renewcommand{\familydefault}{\sfdefault}
+% Literals, tables and code blocks in DejaVu Sans Mono instead of Sphinx's default txtt;
+% scaled down since DejaVu runs large next to Heros
+\usepackage[scaled=0.82]{DejaVuSansMono}
 % Sans-serif TOC entries
 \AtBeginDocument{\addtocontents{toc}{\protect\sffamily}}
 % Left-aligned chapter headings
 \usepackage{titlesec}
 \titleformat{\chapter}[hang]{\sffamily\bfseries\huge}{\thechapter}{1em}{}
 \titlespacing*{\chapter}{0pt}{0pt}{20pt}
-% Centered page header (manual title) + copyright footer
 \usepackage{fancyhdr}
 \def\headruleskip{4pt}\def\footruleskip{4pt}% gap between header/footer text and rule
+\makeatletter
+% Centered page header (doc title) + copyright footer
 \AtBeginDocument{%
   \fancypagestyle{normal}{%
     \fancyhf{}%
-    \fancyhead[C]{\sffamily\nouppercase{Cryptnox Shamir Manual}}%
+    \fancyhead[C]{\sffamily\nouppercase{\@title}}%
     \fancyfoot[L]{\sffamily\copyright{} 2026 Cryptnox SA}%
     \fancyfoot[R]{\sffamily\thepage}%
     \renewcommand{\headrulewidth}{0.4pt}%
@@ -172,7 +176,6 @@ latex_elements = {
   \pagestyle{normal}%
 }
 % Cover page: logo, title, release and date; no author line (the logo brands it)
-\makeatletter
 \renewcommand{\sphinxmaketitle}{%
   \let\sphinxrestorepageanchorsetting\relax
   \ifHy@pageanchor\def\sphinxrestorepageanchorsetting{\Hy@pageanchortrue}\fi
