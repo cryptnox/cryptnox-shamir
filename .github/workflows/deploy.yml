@@ -45,6 +45,14 @@ jobs:
           sphinx-build -M latexpdf docs/source docs/_build
           cp docs/_build/latex/cryptnox-shamir.pdf docs/_build/html/cryptnox-shamir.pdf
 
+      # Keep the built site (HTML + PDF) for review: download it from the run page.
+      - name: Upload the built site for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: docs/_build/html
+          retention-days: 14
+
       # Publish only from main or a manual run, never from a pull request build.
       - name: Publish to the gh-pages branch
         if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
