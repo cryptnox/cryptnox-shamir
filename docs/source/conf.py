@@ -138,6 +138,7 @@ latex_elements = {
 \DeclareUnicodeCharacter{2208}{\ensuremath{\in}}
 \DeclareUnicodeCharacter{00D7}{\ensuremath{\times}}
 \DeclareUnicodeCharacter{200B}{}
+\DeclareUnicodeCharacter{1F4C4}{}% page facing up (PDF link emoji)
 % Left-align body text (ragged right instead of justified)
 \usepackage[document]{ragged2e}
 % Drop the "(continues on next page)" / "(continued from previous page)" labels on code blocks

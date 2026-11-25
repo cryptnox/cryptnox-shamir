@@ -9,14 +9,14 @@ Cryptnox Shamir
 
 .. only:: html
 
-   `Download this documentation as PDF <https://docs.cryptnox.com/cryptnox-shamir/cryptnox-shamir.pdf>`__
-
    *Cryptnox Shamir* splits a single master secret — a Bitcoin treasury key, an HSM
    wrapping key, a recovery seed — across ``n`` tamper-resistant smart cards, of which
    any ``k`` are enough to reconstruct it. No single card, and no single person, ever
    holds the secret. It is built for institutional custody: corporate Bitcoin
    treasuries, funds, exchanges, and any organisation that needs verifiable,
    quorum-based control over a high-value cryptographic secret.
+
+   📄 `Download this documentation as PDF <https://docs.cryptnox.com/cryptnox-shamir/cryptnox-shamir.pdf>`__
 
 
    Getting started
