@@ -71,8 +71,8 @@ sphinx-build -M latexpdf docs/source docs/_build
 
 The generated documentation for this project is available [here](https://docs.cryptnox.com/cryptnox-shamir/).
 
-Cryptnox smart cards and compatible readers are available at
-[shop.cryptnox.com](https://shop.cryptnox.com).
+Order card sets through the [Shamir Secret Sharing Cards page](https://cryptnox.com/shamir-secret-sharing-cards/);
+readers are at [shop.cryptnox.com](https://shop.cryptnox.com).
 
 ---
 
