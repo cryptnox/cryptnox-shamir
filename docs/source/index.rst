@@ -102,6 +102,7 @@ Cryptnox Shamir
    Other resources
    ===============
 
+   * `Shamir Secret Sharing Cards (product page) <https://cryptnox.com/shamir-secret-sharing-cards/>`_
    * `Cryptnox Product Documentation <https://docs.cryptnox.com/>`_
    * `Cryptnox Website <https://www.cryptnox.com>`_
    * `Cryptnox on GitHub <https://github.com/cryptnox>`_

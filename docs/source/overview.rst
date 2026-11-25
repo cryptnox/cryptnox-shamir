@@ -52,7 +52,8 @@ Supported hardware
 - **A contact PC/SC smart card reader.** Contactless / NFC is **not
   supported** — both applets reject it.
 
-Get cards and readers at `shop.cryptnox.com <https://shop.cryptnox.com>`_.
+Order card sets through the `Shamir Secret Sharing Cards page <https://cryptnox.com/shamir-secret-sharing-cards/>`_;
+readers are at `shop.cryptnox.com <https://shop.cryptnox.com>`_.
 
 What you get
 ------------
